@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "189131787014",
+    "project_id": "skinsync-c46a4",
+    "storage_bucket": "skinsync-c46a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189131787014:android:0b339de4c525f871936c87",
+        "android_client_info": {
+          "package_name": "com.example.skin_sync"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWySsqZQSz4hV1m8Br1HhRk-qFSPbfHiM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
