@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:skin_sync/pages/authentication/login.dart';
+import 'package:skin_sync/pages/authentication/firstpage.dart';
+import 'package:device_preview/device_preview.dart';
+import 'package:device_preview/device_preview.dart';
 
-void main() {
+/*void main() {
   runApp(const MyApp());
-}
+}*/
+import 'package:device_preview/device_preview.dart';
+import 'package:skin_sync/pages/authentication/login.dart';
+import 'package:skin_sync/pages/authentication/signup.dart';
+
+void main() => runApp(
+  DevicePreview(
+    enabled: true,
+    builder: (context) => MyApp(), // Wrap your app
+  ),
+);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

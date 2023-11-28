@@ -35,7 +35,17 @@ dependencies:
   firebase_core:
   firebase_database:
   cloud_firestore:
-
+  carousel_slider: ^4.2.1
+  shared_preferences:
+  http:
+  intl:
+  connectivity_plus:
+  pull_to_refresh:
+  google_maps_flutter:
+  google_maps_flutter_web:
+  google_fonts:
+  device_preview:
+  icons_plus:
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -65,9 +75,15 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
+  #assets:
   #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  #  - images/a_dot_ham.jpeg
+  assets:
+    - lib/skinsync.png
+    - lib/skincare.png
+    - lib/facebook.png
+    - lib/google.png
+    - lib/apple.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
