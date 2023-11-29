@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SettingPage extends StatefulWidget {
   SettingPage({Key? key}) : super(key: key);
@@ -8,6 +10,21 @@ class SettingPage extends StatefulWidget {
 }
 class _SettingPageState extends State<SettingPage>{
 
+  bool valNotify1= true;
+  bool valNotify2 = false;
+
+
+  onChangedFunction1(bool newValue1){
+    setState(() {
+      valNotify1 = newValue1;
+    });
+  }
+  onChangedFunction2(bool newValue2){
+    setState(() {
+      valNotify2 = newValue2;
+    });
+  }
+
   int _selectedIndex=0;
 
   @override
@@ -15,28 +32,81 @@ class _SettingPageState extends State<SettingPage>{
     var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.brown.shade50,
-      body: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(padding: EdgeInsets.only(top: 30.0)),
-              Text(
-                "Account Setting",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontStyle: FontStyle.italic,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
+      appBar: AppBar(
+        title:
+        Text("Profile Settings",
+            style:TextStyle(fontSize: 22) ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
           ),
-
         ),
-
-
       ),
+      body: Container(
+        padding: const EdgeInsets.all(10),
+        child: ListView(
+          children: [
+            SizedBox(height: 40),
+            Row(
+              children: [
+                Icon(
+                  Icons.person,
+                  color: Colors.blue,
+                ),
+                SizedBox(width: 10),
+                Text(
+                    "Account", style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold)
+                )
+              ],
+            ),
+            Divider(height: 20, thickness: 1),
+            SizedBox(height: 10),
+            buildAccountOption(context, "Change Email"),
+            buildAccountOption(context, "Change Password"),
+            SizedBox(height: 40),
+            Row(
+              children: [
+                Icon(Icons.volume_up_outlined, color: Colors.blue),
+                SizedBox(width: 10),
+                Text("Notifications", style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold
+                ))
+
+              ],
+            ),
+            Divider(height: 20, thickness: 1),
+            SizedBox(height: 10),
+            buildNotificationOption("Theme Dark", valNotify1, onChangedFunction1),
+            buildNotificationOption("Account Active", valNotify2, onChangedFunction2),
+            SizedBox(height: 50),
+            Center(
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)
+                  )
+                ),
+                onPressed: (){},
+                child: Text("Sign Out", style: TextStyle(
+                  fontSize: 16,
+                  letterSpacing: 2.2,
+                  color: Colors.black
+                )),
+              ),
+            )
+
+
+          ],
+        ),
+      ),
+
+
       bottomNavigationBar: Container(
         color: Colors.black,
         child: Padding(
@@ -67,15 +137,92 @@ class _SettingPageState extends State<SettingPage>{
                 text: 'Search',
               ),
               GButton(
+                icon: Icons.shopping_cart,
+                text: 'Cart',
+              ),
+              GButton(
                 icon: Icons.settings,
                 text: 'Profile',
               ),
             ],
-            selectedIndex: 2,
+            selectedIndex: 3,
           ),
         ),
       ),
     );
 
+  }
+  Padding buildNotificationOption(String title, bool value, Function onChangeMethod){
+    return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(title, style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey[600]
+            )),
+            Transform.scale(
+              scale: 0.7,
+              child: CupertinoSwitch(
+                activeColor: Colors.blue,
+                trackColor: Colors.grey,
+                value: value,
+                onChanged: (bool newValue){
+                  onChangeMethod(newValue);
+                },
+              ),
+            )
+          ],
+      ),
+    );
+  }
+
+  GestureDetector buildAccountOption (BuildContext context, String title){
+    return GestureDetector(
+      onTap: (){
+        showDialog(context: context, builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(title),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text("Optin 1"),
+                Text("Optin 2")
+
+              ],
+            ),
+            actions: [
+              TextButton(
+                  onPressed: (){
+                    Navigator.of(context).pop();
+              },
+                  child: Text("Close")
+              )
+
+            ],
+          );
+
+
+        });
+
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(title, style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey[600]
+            )),
+            Icon(Icons.arrow_forward_ios, color: Colors.grey)
+
+          ],
+        ),
+      ),
+    );
   }
 }
