@@ -81,8 +81,8 @@ class _SettingPageState extends State<SettingPage>{
             ),
             Divider(height: 20, thickness: 1),
             SizedBox(height: 10),
-            buildNotificationOption("Theme Dark", valNotify1, onChangedFunction1),
-            buildNotificationOption("Account Active", valNotify2, onChangedFunction2),
+            buildNotificationOption("Account Active", valNotify1, onChangedFunction1),
+            buildNotificationOption("Dark Theme", valNotify2, onChangedFunction2),
             SizedBox(height: 50),
             Center(
               child: OutlinedButton(
@@ -99,7 +99,10 @@ class _SettingPageState extends State<SettingPage>{
                   color: Colors.black
                 )),
               ),
-            )
+
+            ),
+            SizedBox(height: 20),
+
 
 
           ],
@@ -138,7 +141,7 @@ class _SettingPageState extends State<SettingPage>{
               ),
               GButton(
                 icon: Icons.shopping_cart,
-                text: 'Cart',
+                text: 'My Cart',
               ),
               GButton(
                 icon: Icons.settings,
@@ -188,8 +191,8 @@ class _SettingPageState extends State<SettingPage>{
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text("Optin 1"),
-                Text("Optin 2")
+                Text("Option 1"),
+                Text("Option 2")
 
               ],
             ),
