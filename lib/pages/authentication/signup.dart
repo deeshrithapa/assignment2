@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 
 class signuppage extends StatefulWidget {
   const signuppage({super.key});
@@ -28,7 +28,11 @@ class _signuppageState extends State<signuppage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("SkinSync",
-                      style: GoogleFonts.aladin(fontSize: 40, fontStyle: FontStyle.normal, fontWeight: FontWeight.bold,)
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.bold,
+                      ),
                      ),
                   ],
                 ),
@@ -38,7 +42,11 @@ class _signuppageState extends State<signuppage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Register Here",
-                        style: GoogleFonts.aladin(fontSize: 20, fontStyle: FontStyle.normal, fontWeight: FontWeight.bold,)
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),],
                 ),
 

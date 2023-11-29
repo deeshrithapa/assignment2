@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:skin_sync/pages/authentication/firstpage.dart';
-import 'package:device_preview/device_preview.dart';
-import 'package:device_preview/device_preview.dart';
+
 
 /*void main() {
   runApp(const MyApp());
 }*/
-import 'package:device_preview/device_preview.dart';
+
 import 'package:skin_sync/pages/authentication/login.dart';
 import 'package:skin_sync/pages/authentication/signup.dart';
+import 'package:skin_sync/pages/slides/SearchPage.dart';
+import 'package:skin_sync/pages/slides/SettingPage.dart';
 
-void main() => runApp(
-  DevicePreview(
-    enabled: true,
-    builder: (context) => MyApp(), // Wrap your app
-  ),
-);
+void main() {
+  runApp(const MyApp());
+}
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -45,7 +44,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const loginpage(),
+      home: loginpage(),
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:skin_sync/components/button.dart';
 
 class firstpage extends StatefulWidget {
@@ -22,8 +21,10 @@ class _firstpageState extends State<firstpage> {
               SizedBox(height: 20,),
               //project title
                 Text("Skin Sync",
-                  style: GoogleFonts.alexBrush(
-                    fontSize: 50,
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontStyle: FontStyle.italic,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
 
@@ -37,7 +38,11 @@ class _firstpageState extends State<firstpage> {
 
               //subtitle
               Text("Your ultimate skincare hub.",
-                  style: GoogleFonts.aladin(fontSize: 30),),
+                style: TextStyle(
+                  fontSize: 30,
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.bold,
+                ),),
 
               SizedBox(height: 40,),
 
@@ -50,9 +55,12 @@ class _firstpageState extends State<firstpage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Get Started",
-                      style: GoogleFonts.aladin(
-                        fontSize: 30,
-                      ),),
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontStyle: FontStyle.italic,
+                    fontWeight: FontWeight.bold,
+                  ),
+                      ),
                   ],
                 ),
               ),

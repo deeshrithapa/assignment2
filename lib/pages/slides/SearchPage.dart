@@ -17,6 +17,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.brown.shade50,
       body: SingleChildScrollView(
         child: Container(
           child: Column(
