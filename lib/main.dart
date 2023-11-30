@@ -1,21 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:skin_sync/pages/authentication/firstpage.dart';
-import 'package:device_preview/device_preview.dart';
-import 'package:device_preview/device_preview.dart';
-
-/*void main() {
-  runApp(const MyApp());
-}*/
-import 'package:device_preview/device_preview.dart';
 import 'package:skin_sync/pages/authentication/login.dart';
 import 'package:skin_sync/pages/authentication/signup.dart';
 
-void main() => runApp(
-  DevicePreview(
-    enabled: true,
-    builder: (context) => MyApp(), // Wrap your app
-  ),
-);
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -24,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false   ,
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -45,7 +35,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const loginpage(),
+      home: const firstpage(),
     );
   }
 }

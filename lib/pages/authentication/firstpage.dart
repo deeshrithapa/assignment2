@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:skin_sync/components/button.dart';
+import 'package:skin_sync/pages/authentication/login.dart';
 
 class firstpage extends StatefulWidget {
   const firstpage({super.key});
@@ -17,22 +18,20 @@ class _firstpageState extends State<firstpage> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
+          padding: const EdgeInsets.only(top: 50),
           child: Column(
             children: [
-              SizedBox(height: 20,),
               //project title
                 Text("Skin Sync",
-                  style: GoogleFonts.alexBrush(
-                    fontSize: 50,
-                  ),
-                ),
+            style: GoogleFonts.aladin(fontSize: 60),),
+                
 
               SizedBox(height: 10,),
 
               //image
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image.asset("lib/skincare.png", height: 550, width: 350,),
+                padding: const EdgeInsets.only(top: 20),
+                child: Image.asset("lib/skincare.png", height: 450, width: 350,),
               ),
 
               //subtitle
@@ -45,15 +44,17 @@ class _firstpageState extends State<firstpage> {
               Container(
                 height: 50,
                 width: 410,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.brown.shade200),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Get Started",
-                      style: GoogleFonts.aladin(
-                        fontSize: 30,
-                      ),),
-                  ],
+                child: ElevatedButton(
+                  onPressed: (){
+                    //Navigate
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> loginpage()),);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.brown.shade200,
+                    // Set the background color of the button
+                    ),
+                  child: Text("Get Started",
+                    style: GoogleFonts.aladin(color: Colors.white, fontSize: 30),),
                 ),
               ),
             ],

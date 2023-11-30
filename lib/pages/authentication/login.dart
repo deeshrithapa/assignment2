@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:skin_sync/pages/authentication/signup.dart';
 
 class loginpage extends StatefulWidget {
   const loginpage({super.key});
@@ -77,12 +78,32 @@ class _loginpageState extends State<loginpage> {
                         height: 50,width: 150,
                         decoration: BoxDecoration(color: Colors.brown.shade200,
                             borderRadius: BorderRadius.circular(30)),
-                        child: Center(
-                          child: Text("Login",
-                            style: TextStyle(color: Colors.white,
-                                fontSize: 20,fontWeight: FontWeight.bold),),
+                        child: ElevatedButton(
+                          onPressed: (){
+                            //Navigate
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> signuppage()),);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.brown.shade200, // Set the background color of the button
+                          ),
+                          child: Text("Login", style: GoogleFonts.aladin(color: Colors.white, fontSize: 30)),
                         ),
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Dont have an account?", style: TextStyle(fontSize: 20),),
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => signuppage()),);
+                            },
+                            child: Text("Sign up here", style: TextStyle(
+                                color:Colors.blueAccent, fontSize: 20, decoration: TextDecoration.underline),),
+                          )
+                        ],
+                      ),                      
                     ],
                   ),
                 ),

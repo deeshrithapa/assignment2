@@ -28,17 +28,16 @@ class _signuppageState extends State<signuppage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("SkinSync",
-                      style: GoogleFonts.aladin(fontSize: 40, fontStyle: FontStyle.normal, fontWeight: FontWeight.bold,)
+                      style: GoogleFonts.aladin(fontSize: 50, fontStyle: FontStyle.normal, fontWeight: FontWeight.bold,)
                      ),
                   ],
                 ),
-                SizedBox(height: 5,),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Register Here",
-                        style: GoogleFonts.aladin(fontSize: 20, fontStyle: FontStyle.normal, fontWeight: FontWeight.bold,)
+                        style: GoogleFonts.aladin(fontSize: 25, fontStyle: FontStyle.normal, fontWeight: FontWeight.bold,)
                     ),],
                 ),
 
@@ -58,7 +57,6 @@ class _signuppageState extends State<signuppage> {
                       ),
                       SizedBox(height: 5,),
                       TextField(
-                        obscureText: true,
                         decoration: InputDecoration(
                             fillColor: Colors.grey.shade100,
                             filled: true,
@@ -70,7 +68,6 @@ class _signuppageState extends State<signuppage> {
                       ),
                       SizedBox(height: 5,),
                       TextField(
-                        obscureText: true,
                         decoration: InputDecoration(
                             fillColor: Colors.grey.shade100,
                             filled: true,
@@ -82,7 +79,6 @@ class _signuppageState extends State<signuppage> {
                       ),
                       SizedBox(height: 5,),
                       TextField(
-                        obscureText: true,
                         decoration: InputDecoration(
                             fillColor: Colors.grey.shade100,
                             filled: true,
@@ -104,27 +100,15 @@ class _signuppageState extends State<signuppage> {
                             )
                         ),
                       ),
-                      SizedBox(height: 5,),
-                      TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                            fillColor: Colors.grey.shade100,
-                            filled: true,
-                            hintText: "Confirm Password",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10)
-                            )
-                        ),
-                      ),
-                      SizedBox(height: 20,),
+
+                      SizedBox(height: 10,),
                       Container(
                         height: 50,width: 150,
                         decoration: BoxDecoration(color: Colors.brown.shade200,
                             borderRadius: BorderRadius.circular(30)),
                         child: Center(
                           child: Text("Sign In",
-                            style: TextStyle(color: Colors.white,
-                                fontSize: 20,fontWeight: FontWeight.bold),),
+                              style: GoogleFonts.aladin(color: Colors.white, fontSize: 30)),
                         ),
                       ),
                       SizedBox(height: 5,),
@@ -133,21 +117,14 @@ class _signuppageState extends State<signuppage> {
                         children: [
                             Text("Or Sign in with",
                               style: TextStyle(
-                                  fontSize: 12,),),
+                                  fontSize: 14,),),
                         ],
                       ),
                         SingleChildScrollView(
-                          padding: const EdgeInsets.only(left: 80),
+                          padding: const EdgeInsets.only(left: 150),
                           child: Row(
-                            //mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              /*Icon(Icons.apple),
-                              Icon(Icons.facebook),*/
-                              Image.asset("lib/facebook.png", height: 50, width: 30,),
-                              SizedBox(width: 35,),
                               Image.asset("lib/google.png", height: 50, width: 30,),
-                              SizedBox(width: 35,),
-                              Image.asset("lib/apple.png", height: 50, width: 30,),
                               SizedBox(width: 35,),
                             ],
                           ),
