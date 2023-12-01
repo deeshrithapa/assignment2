@@ -92,7 +92,7 @@ class _loginpageState extends State<loginpage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Dont have an account?", style: TextStyle(fontSize: 20),),
+                          Text("Dont have an account?", style: TextStyle(fontSize: 12),),
                           GestureDetector(
                             onTap: (){
                               Navigator.push(
@@ -100,7 +100,7 @@ class _loginpageState extends State<loginpage> {
                                   MaterialPageRoute(builder: (context) => signuppage()),);
                             },
                             child: Text("Sign up here", style: TextStyle(
-                                color:Colors.blueAccent, fontSize: 20, decoration: TextDecoration.underline),),
+                                color:Colors.blueAccent, fontSize: 12, decoration: TextDecoration.underline),),
                           )
                         ],
                       ),                      

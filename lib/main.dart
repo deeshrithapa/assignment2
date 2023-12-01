@@ -1,10 +1,17 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:skin_sync/pages/authentication/firstpage.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:skin_sync/pages/authentication/login.dart';
 import 'package:skin_sync/pages/authentication/signup.dart';
+import 'package:skin_sync/pages/slides/SettingPage.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+
 }
 
 class MyApp extends StatelessWidget {
@@ -35,7 +42,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const firstpage(),
+      home: firstpage(),
     );
   }
 }
