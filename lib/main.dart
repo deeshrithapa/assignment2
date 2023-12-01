@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:skin_sync/pages/authentication/firstpage.dart';
 import 'package:skin_sync/pages/authentication/login.dart';
 import 'package:skin_sync/pages/authentication/signup.dart';
+import 'package:skin_sync/pages/slides/SearchPage.dart';
+import 'package:skin_sync/pages/slides/SettingPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const firstpage(),
+      home:  SettingPage(),
     );
   }
 }

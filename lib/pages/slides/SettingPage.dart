@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:skin_sync/pages/authentication/firstpage.dart';
 
 class SettingPage extends StatefulWidget {
   SettingPage({Key? key}) : super(key: key);
@@ -92,7 +93,9 @@ class _SettingPageState extends State<SettingPage>{
                     borderRadius: BorderRadius.circular(20)
                   )
                 ),
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> firstpage()),);
+                },
                 child: Text("Sign Out", style: TextStyle(
                   fontSize: 16,
                   letterSpacing: 2.2,

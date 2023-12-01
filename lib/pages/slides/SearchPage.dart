@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class SearchPage extends StatefulWidget {
   SearchPage({Key? key}) : super(key: key);
@@ -7,6 +8,9 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+
+  int _selectedIndex=0;
+
   List<String> images = [
     "https://iambodyboom.com/cdn/shop/collections/Bodyboom_Shopify_Banner_1_-_Desktop_No_Text.png?v=1682531929&width=3200",
     "https://www.dotandkey.com/cdn/shop/collections/Catagory-desktop-banner_2.png?v=1610816960",
@@ -82,7 +86,54 @@ class _SearchPageState extends State<SearchPage> {
                   },
                 ),
               ),
+
+
             ],
+          ),
+        ),
+
+
+
+      ),
+      bottomNavigationBar: Container(
+        color: Colors.black,
+        child: Padding(
+          padding: const EdgeInsets.symmetric( horizontal: 15, vertical:20),
+          child: GNav(
+
+            backgroundColor: Colors.black,
+            color: Colors.white,
+            activeColor: Colors.white,
+            tabBackgroundColor: Colors.grey.shade800,
+            gap: 8,
+            onTabChange: (index){
+              setState(() {
+                _selectedIndex = index;
+              });
+
+            },
+
+            padding: EdgeInsets.all(16),
+            tabs: const[
+
+              GButton(
+                icon: Icons.home,
+                text: 'Home',
+              ),
+              GButton(
+                icon: Icons.search,
+                text: 'Search',
+              ),
+              GButton(
+                icon: Icons.shopping_cart,
+                text: 'My Cart',
+              ),
+              GButton(
+                icon: Icons.settings,
+                text: 'Profile',
+              ),
+            ],
+            selectedIndex: 1,
           ),
         ),
       ),
