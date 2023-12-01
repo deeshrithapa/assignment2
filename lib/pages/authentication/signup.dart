@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:skin_sync/pages/authentication/auth_services.dart';
 
 class signuppage extends StatefulWidget {
   const signuppage({super.key});
@@ -28,7 +29,7 @@ class _signuppageState extends State<signuppage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("SkinSync",
-                      style: GoogleFonts.aladin(fontSize: 50, fontStyle: FontStyle.normal, fontWeight: FontWeight.bold,)
+                      style: GoogleFonts.aladin(fontSize: 40, fontStyle: FontStyle.normal, fontWeight: FontWeight.bold,)
                      ),
                   ],
                 ),
@@ -108,7 +109,7 @@ class _signuppageState extends State<signuppage> {
                             borderRadius: BorderRadius.circular(30)),
                         child: Center(
                           child: Text("Sign In",
-                              style: GoogleFonts.aladin(color: Colors.white, fontSize: 30)),
+                              style: GoogleFonts.aladin(color: Colors.white, fontSize: 20)),
                         ),
                       ),
                       SizedBox(height: 5,),
@@ -120,19 +121,26 @@ class _signuppageState extends State<signuppage> {
                                   fontSize: 14,),),
                         ],
                       ),
-                        SingleChildScrollView(
-                          padding: const EdgeInsets.only(left: 150),
-                          child: Row(
-                            children: [
-                              Image.asset("lib/google.png", height: 50, width: 30,),
-                              SizedBox(width: 35,),
-                            ],
-                          ),
-                        ),
-                    ],
-                  ),
+            GestureDetector(
+              onTap: () {
+                signInWithGoogle(context);
+              },
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal, // Added to allow horizontal scrolling if needed
+                padding: const EdgeInsets.only(left: 150),
+                child: Row(
+                  children: [
+                    Image.asset("lib/google.png", height: 50, width: 30,),
+                    SizedBox(width: 35),
+                  ],
                 ),
-              ]
+              ),
+            ),
+],
+        ),
+
+                  ),
+                ],
           ),
         ),
       ),
