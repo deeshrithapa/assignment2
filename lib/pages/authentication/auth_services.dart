@@ -30,7 +30,7 @@ signInWithGoogle(context)async{
       if(login.user != null){
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => SearchPage()),
+          MaterialPageRoute(builder: (context) => SettingPage()),
         );
       }
     }
