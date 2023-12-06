@@ -1,113 +1,88 @@
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
-  class dashpage extends StatefulWidget {
-    const dashpage({super.key});
+class SkincareDashboard extends StatefulWidget {
+  @override
+  _SkincareDashboardState createState() => _SkincareDashboardState();
+}
 
-    @override
-    State<dashpage> createState() => _dashpageState();
-  }
+class _SkincareDashboardState extends State<SkincareDashboard> {
+  List<String> brandImages = [
+    'lib/skinsync.png',
+    'lib/skinsync1.png',
+    'lib/skincare.png',
+    // Add more brand images as needed
+  ];
 
-  class _dashpageState extends State<dashpage> {
-    List<String> images = [
-       'assets/images/AdvancedSnail.png' ,
-       'assets/images/TheDermaCo.png',
-       'assets/images/TheOrdinary.png',
-      'assets/images/skinsync1.png',
+  int _selectedIndex = 0; // Change the initial selected index based on your requirement
 
-      //"https://i.pinimg.com/564x/c0/8a/34/c08a340c7b6cda7100c8666b8f0c175f.jpg" ,
-
-    ];
-    @override
-    Widget build(BuildContext context) {
-      var size = MediaQuery.of(context).size;
-      return Scaffold(
-        backgroundColor: Colors.brown.shade50,
-        body: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children:
-                <Widget>[
-                // AppBar(
-                //   backgroundColor: Colors.white,
-                //   leading:  Image.asset("lib/skincare.png", height: 550, width: 350,),
-                //   ),
-                Padding(padding: EdgeInsets.only(top: 30.0)),
-                Text(
-                  "Skin Sync",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontStyle: FontStyle.italic,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-
-                SizedBox(height: 20),
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Search for products and more',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          suffixIcon: IconButton(
-                            icon: Icon(Icons.clear),
-                            onPressed: () {
-                              //code to clear the text field
-                            },
-                          ),
-                        ),
-                        onChanged: (query) {
-                          onSearch(query);
-                        },
-                      ),
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.search),
-                      onPressed: () {
-                        //code to perform search
-                      },
-                    ),
-                  ],
-                ),
-                // SizedBox(height: 20), // some space between search bar and image
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     Image.asset("lib/TheDermaCo.png", height: 150, width: 100,),
-                //   ],
-                // )
-
-                Container(
-                  height: 200,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: images.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.network(
-                          images[index],
-                          height: 150,
-                          width: 300,
-                          fit: BoxFit.cover,
-                        ),
-                      );
-                    },
-                  ),
-                ),
-
-              ],
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Skincare Dashboard'),
+      ),
+      body: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 8.0,
+          mainAxisSpacing: 8.0,
+        ),
+        itemCount: brandImages.length,
+        itemBuilder: (BuildContext context, int index) {
+          return GestureDetector(
+            onTap: () {
+              // Handle brand item click if needed
+            },
+            child: Card(
+              elevation: 3.0,
+              child: Image.asset(
+                brandImages[index],
+                fit: BoxFit.cover,
+              ),
             ),
+          );
+        },
+      ),
+      bottomNavigationBar: Container(
+        color: Colors.black,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+          child: GNav(
+            backgroundColor: Colors.black,
+            color: Colors.white,
+            activeColor: Colors.white,
+            tabBackgroundColor: Colors.grey.shade800,
+            gap: 8,
+            onTabChange: (index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+            padding: EdgeInsets.all(16),
+            tabs: const [
+              GButton(
+                icon: Icons.home,
+                text: 'Home',
+              ),
+              GButton(
+                icon: Icons.search,
+                text: 'Search',
+              ),
+              GButton(
+                icon: Icons.shopping_cart,
+                text: 'My Cart',
+              ),
+              GButton(
+                icon: Icons.settings,
+                text: 'Profile',
+              ),
+            ],
+            selectedIndex: 0,
           ),
         ),
-      );
-    }
+      ),
+    );
   }
-
-  void onSearch(String query) {
-    //code to perform search based on the query
-  }
+}
