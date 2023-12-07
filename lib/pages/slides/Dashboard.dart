@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class dashpage extends StatefulWidget {
   const dashpage({super.key});
@@ -9,11 +10,12 @@ class dashpage extends StatefulWidget {
 }
 
 class _dashpageState extends State<dashpage> {
-  final List<String> imagePaths = [
-    'lib/skinsync.png',
-    'lib/skincare.png',
-    'lib/TheOrdinary.png',
-    'lib/TheDermaCo.png',
+  int _selectedIndex=0;
+  List<String> imagePaths = [
+    'lib/images/cetaphil.png',
+    'lib/images/derma.png',
+    'lib/images/cerave1.png',
+    'lib/images/ordinary2.png',
     // Add more image paths as needed
   ];
   @override
@@ -78,7 +80,7 @@ class _dashpageState extends State<dashpage> {
                     return Padding(padding: const EdgeInsets.all(8.0),
                     child: Image.asset(
                       imagePaths[index],
-                      width: 200,
+                      width: 300,
                       height: 100,
                       fit: BoxFit.cover,
                     ),
@@ -89,6 +91,46 @@ class _dashpageState extends State<dashpage> {
               ),
 
             ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: Container(
+        color: Colors.black,
+        child: Padding(
+          padding: const EdgeInsets.symmetric( horizontal: 15, vertical:20),
+          child: GNav(
+            backgroundColor: Colors.black,
+            color: Colors.white,
+            activeColor: Colors.white,
+            tabBackgroundColor: Colors.grey.shade800,
+            gap: 8,
+            onTabChange: (index){
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+
+            padding: EdgeInsets.all(16),
+            tabs: const[
+
+              GButton(
+                icon: Icons.home,
+                text: 'Home',
+              ),
+              GButton(
+                icon: Icons.search,
+                text: 'Search',
+              ),
+              GButton(
+                icon: Icons.shopping_cart,
+                text: 'My Cart',
+              ),
+              GButton(
+                icon: Icons.settings,
+                text: 'Profile',
+              ),
+            ],
+            selectedIndex: 0,
           ),
         ),
       ),
