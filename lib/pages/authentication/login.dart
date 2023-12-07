@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:skin_sync/pages/authentication/signup.dart';
+import 'package:skin_sync/pages/slides/Dashboard.dart';
 
 class loginpage extends StatefulWidget {
   const loginpage({super.key});
@@ -81,7 +82,7 @@ class _loginpageState extends State<loginpage> {
                         child: ElevatedButton(
                           onPressed: (){
                             //Navigate
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=> signuppage()),);
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> dashpage()),);
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.brown.shade200, // Set the background color of the button
