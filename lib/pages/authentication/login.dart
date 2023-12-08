@@ -24,7 +24,7 @@ class _loginpageState extends State<loginpage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset("lib/skinsync.png", height: 200, width: 150,),
+                    Image.asset("lib/images/skinsync.png", height: 200, width: 150,),
                   ],
                 ),
                 Row(

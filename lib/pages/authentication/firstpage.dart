@@ -31,7 +31,7 @@ class _firstpageState extends State<firstpage> {
               //image
               Padding(
                 padding: const EdgeInsets.only(top: 20),
-                child: Image.asset("lib/skincare.png", height: 450, width: 350,),
+                child: Image.asset("lib/images/skincare.png", height: 450, width: 350,),
               ),
 
               //subtitle

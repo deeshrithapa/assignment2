@@ -26,7 +26,7 @@ class _signuppageState extends State<signuppage> {
                  Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset("lib/skinsync.png", height: 200, width: 150,),
+                    Image.asset("lib/images/skinsync.png", height: 200, width: 150,),
                   ],
                 ),
                 Row(
@@ -200,7 +200,7 @@ class _signuppageState extends State<signuppage> {
                 padding: const EdgeInsets.only(left: 40),
                 child: Row(
                   children: [
-                    Image.asset("lib/google.png", height: 50, width: 30,),
+                    Image.asset("lib/images/google.png", height: 50, width: 30,),
                     SizedBox(width: 35),
                   ],
                 ),
