@@ -1,3 +1,5 @@
+import 'package:carousel_slider/carousel_controller.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -11,87 +13,40 @@ class dashpage extends StatefulWidget {
 
 class _dashpageState extends State<dashpage> {
   int _selectedIndex=0;
-  List<String> imagePaths = [
-    'lib/images/cetaphil.png',
-    'lib/images/derma.png',
-    'lib/images/cerave1.png',
-    'lib/images/ordinary2.png',
-    // Add more image paths as needed
-  ];
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.brown.shade50,
-      body: SingleChildScrollView(
-        child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children:
-            <Widget>[
-              // AppBar(
-              //   backgroundColor: Colors.white,
-              //   leading:  Image.asset("lib/skincare.png", height: 550, width: 350,),
-              //   ),
-              Padding(padding: EdgeInsets.only(top: 50)),
-              Text(
-                  "Skin Sync",
+      body: Container(
+        child: Column(
+          children: [
+            Padding(padding: EdgeInsets.only(top: 50),
+              child:  Text("SkinSync",
                   style: GoogleFonts.aladin(fontSize: 40, fontStyle: FontStyle.normal, fontWeight: FontWeight.bold,)
               ),
-
-              SizedBox(height: 20),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Search for products and more',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        suffixIcon: IconButton(
-                          icon: Icon(Icons.clear),
-                          onPressed: () {
-                            //code to clear the text field
-                          },
-                        ),
-                      ),
-                      onChanged: (query) {
-                        onSearch(query);
-                      },
-                    ),
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.search),
-                    onPressed: () {
-                      //code to perform search
-                    },
-                  ),
-                ],
+            ),
+            CarouselSlider(
+              options: CarouselOptions(
+                height: 200.0,
+                enlargeCenterPage: true,
+                autoPlay: true,
+                aspectRatio: 16/9,
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enableInfiniteScroll: true,
+                autoPlayAnimationDuration: Duration(milliseconds: 800),
+                viewportFraction: 0.9,
               ),
-
-              Container(
-                height: 200,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: imagePaths.length,
-                  itemBuilder: (context, index) {
-                    return Padding(padding: const EdgeInsets.all(8.0),
-                    child: Image.asset(
-                      imagePaths[index],
-                      width: 300,
-                      height: 100,
-                      fit: BoxFit.cover,
-                    ),
-                    );
-                  },
-
-                ),
-              ),
-
-            ],
-          ),
+              items: [
+                'lib/images/cetaphil.png',
+                'lib/images/cerave1.png',
+                'lib/images/derma.png',
+                'lib/images/mamaearth1.png',
+                // Add more images as needed
+              ].map((item) => Image.asset(item, fit: BoxFit.cover)).toList(),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: Container(

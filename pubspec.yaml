@@ -35,12 +35,12 @@ dependencies:
   firebase_core:
   firebase_database:
   cloud_firestore:
-  #carousel_slider: ^4.2.1
-  #shared_preferences:
-  #http:
-  #intl:
-  #connectivity_plus:
-  #pull_to_refresh:
+  carousel_slider:
+  shared_preferences:
+  http:
+  intl:
+  connectivity_plus:
+  pull_to_refresh:
   google_fonts:
   icons_plus:
   google_sign_in:
@@ -94,6 +94,7 @@ flutter:
     - lib/images/ordinary2.png
     - lib/images/cerave1.png
     - lib/images/derma.png
+    - lib/images/mamaearth1.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
