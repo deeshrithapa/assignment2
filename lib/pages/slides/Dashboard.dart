@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
+import 'DetailPage.dart';
+import 'SearchPage.dart';
+import 'SettingPage.dart';
+
 class dashpage extends StatefulWidget {
   const dashpage({super.key});
 
@@ -11,6 +15,7 @@ class dashpage extends StatefulWidget {
 
 class _dashpageState extends State<dashpage> {
   int _selectedIndex=0;
+
   List<String> imagePaths = [
     'lib/images/cetaphil.png',
     'lib/images/derma.png',
@@ -18,6 +23,47 @@ class _dashpageState extends State<dashpage> {
     'lib/images/ordinary2.png',
     // Add more image paths as needed
   ];
+
+  void _onTabChange(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    // Navigate to the selected page
+    switch (index) {
+      case 0:
+      // Home page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => dashpage()),
+        );
+        break;
+      case 1:
+      // Search page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SearchPage()),
+        );
+        break;
+      case 2:
+      // Cart page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => detailpage()),
+        );
+        break;
+      case 3:
+      // Settings page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SettingPage()),
+        );
+        break;
+      default:
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -37,7 +83,9 @@ class _dashpageState extends State<dashpage> {
               Padding(padding: EdgeInsets.only(top: 50)),
               Text(
                   "Skin Sync",
-                  style: GoogleFonts.aladin(fontSize: 40, fontStyle: FontStyle.normal, fontWeight: FontWeight.bold,)
+                  style: GoogleFonts.aladin(fontSize: 40,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.bold,)
               ),
 
               SizedBox(height: 20),
@@ -105,10 +153,8 @@ class _dashpageState extends State<dashpage> {
             tabBackgroundColor: Colors.grey.shade800,
             gap: 8,
             onTabChange: (index){
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
+             _onTabChange(index);
+              },
 
             padding: EdgeInsets.all(16),
             tabs: const[
