@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:skin_sync/pages/slides/CartPage.dart';
-
 import 'Dashboard.dart';
 import 'DetailPage.dart';
 import 'SettingPage.dart';

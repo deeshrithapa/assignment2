@@ -60,34 +60,159 @@ class _dashpageState extends State<dashpage> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.brown.shade50,
-      body: Container(
-        child: Column(
-          children: [
-            Padding(padding: EdgeInsets.only(top: 50),
-              child:  Text("SkinSync",
-                  style: GoogleFonts.aladin(fontSize: 40, fontStyle: FontStyle.normal, fontWeight: FontWeight.bold,)
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: [
+              Padding(padding: EdgeInsets.only(top: 50),
+                child:  Text("SkinSync",
+                    style: GoogleFonts.aladin(fontSize: 40, fontStyle: FontStyle.normal, fontWeight: FontWeight.bold,)
+                ),
               ),
-            ),
-            CarouselSlider(
-              options: CarouselOptions(
-                height: 200.0,
-                enlargeCenterPage: true,
-                autoPlay: true,
-                aspectRatio: 16/9,
-                autoPlayCurve: Curves.fastOutSlowIn,
-                enableInfiniteScroll: true,
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                viewportFraction: 0.9,
+              CarouselSlider(
+                options: CarouselOptions(
+                  height: 200.0,
+                  enlargeCenterPage: true,
+                  autoPlay: true,
+                  aspectRatio: 16/9,
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  enableInfiniteScroll: true,
+                  autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  viewportFraction: 0.9,
+                ),
+                items: [
+                  'lib/images/cetaphil.png',
+                  'lib/images/cerave1.png',
+                  'lib/images/DermaCo.png',
+                  'lib/images/mamaearth1.png',
+                  // Add more images as needed
+                ].map((item) => Image.asset(item, fit: BoxFit.cover)).toList(),
               ),
-              items: [
-                'lib/images/cetaphil.png',
-                'lib/images/cerave1.png',
-                'lib/images/derma.png',
-                'lib/images/mamaearth1.png',
-                // Add more images as needed
-              ].map((item) => Image.asset(item, fit: BoxFit.cover)).toList(),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.only(top:20, right: 230),
+              child: Text("Top Brand Picks",
+                style: TextStyle(
+                  fontSize: 20,),
+              ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.brown.shade50,
+                  borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
+                ),
+                padding: EdgeInsets.all(16),
+                child: Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
+                      child: Image.asset(
+                        'lib/images/cerave2.png', // Replace with your image asset path
+                        width: 400,
+                        height: 200,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      "Cerave",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.brown.shade50,
+                  borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
+                ),
+                padding: EdgeInsets.all(16),
+                child: Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
+                      child: Image.asset(
+                        'lib/images/cetaphil1.png', // Replace with your image asset path
+                        width: 400,
+                        height: 200,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      "Cetaphil",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.brown.shade50,
+                  borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
+                ),
+                padding: EdgeInsets.all(16),
+                child: Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
+                      child: Image.asset(
+                        'lib/images/derma.png', // Replace with your image asset path
+                        width: 400,
+                        height: 200,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      "The DermaCo",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.brown.shade50,
+                  borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
+                ),
+                padding: EdgeInsets.all(16),
+                child: Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
+                      child: Image.asset(
+                        'lib/images/mamaearth2.png', // Replace with your image asset path
+                        width: 400,
+                        height: 200,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      "Mamaearth",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Container(

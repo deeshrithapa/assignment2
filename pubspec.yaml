@@ -86,7 +86,7 @@ flutter:
     - lib/images/skincare.png
     - lib/images/google.png
     - lib/images/AdvancedSnail.png
-    - lib/images/TheDermaCo.png
+    - lib/images/DermaCo.png
     - lib/images/TheOrdinary.png
     - lib/images/Ordinary1.png
     - lib/images/skincare_hand.png
@@ -95,6 +95,9 @@ flutter:
     - lib/images/cerave1.png
     - lib/images/derma.png
     - lib/images/mamaearth1.png
+    - lib/images/cerave2.png
+    - lib/images/cetaphil1.png
+    - lib/images/mamaearth2.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
