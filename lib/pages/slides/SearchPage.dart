@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:skin_sync/pages/slides/CartPage.dart';
 
 import 'Dashboard.dart';
 import 'DetailPage.dart';
@@ -45,7 +47,7 @@ class _SearchPageState extends State<SearchPage> {
       // Cart page
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => detailpage()),
+          MaterialPageRoute(builder: (context) => cartpage()),
         );
         break;
       case 3:
@@ -71,16 +73,11 @@ class _SearchPageState extends State<SearchPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(padding: EdgeInsets.only(top: 30.0)),
-              Text(
-                "Skin Sync",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontStyle: FontStyle.italic,
-                  fontWeight: FontWeight.bold,
-                ),
+              Padding(padding: EdgeInsets.only(top: 50.0)),
+              Text("SkinSync",
+                  style: GoogleFonts.aladin(fontSize: 40, fontStyle: FontStyle.normal, fontWeight: FontWeight.bold,)
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               Row(
                 children: [
                   Expanded(
@@ -110,7 +107,7 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                 ],
               ),
-              SizedBox(height: 20), // some space between search bar and image
+              SizedBox(height: 10), // some space between search bar and image
               Container(
                 height: 200,
                 child: ListView.builder(

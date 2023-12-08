@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skin_sync/pages/authentication/firstpage.dart';
+import 'package:skin_sync/pages/slides/CartPage.dart';
 import 'package:skin_sync/pages/slides/Terms.dart';
 
 import 'Dashboard.dart';
@@ -58,7 +59,7 @@ class _SettingPageState extends State<SettingPage>{
       // Cart page
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => detailpage()),
+          MaterialPageRoute(builder: (context) => cartpage()),
         );
         break;
       case 3:

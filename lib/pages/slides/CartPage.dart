@@ -1,20 +1,17 @@
-import 'package:carousel_slider/carousel_controller.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:skin_sync/pages/slides/CartPage.dart';
-import 'package:skin_sync/pages/slides/SearchPage.dart';
+import 'package:skin_sync/pages/slides/Dashboard.dart';
 import 'package:skin_sync/pages/slides/SettingPage.dart';
+import 'SearchPage.dart';
 
-class dashpage extends StatefulWidget {
-  const dashpage({super.key});
+class cartpage extends StatefulWidget {
+  const cartpage({super.key});
 
   @override
-  State<dashpage> createState() => _dashpageState();
+  State<cartpage> createState() => _cartpageState();
 }
 
-class _dashpageState extends State<dashpage> {
+class _cartpageState extends State<cartpage> {
   int _selectedIndex=0;
   void _onTabChange(int index) {
     setState(() {
@@ -57,39 +54,7 @@ class _dashpageState extends State<dashpage> {
   }
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.brown.shade50,
-      body: Container(
-        child: Column(
-          children: [
-            Padding(padding: EdgeInsets.only(top: 50),
-              child:  Text("SkinSync",
-                  style: GoogleFonts.aladin(fontSize: 40, fontStyle: FontStyle.normal, fontWeight: FontWeight.bold,)
-              ),
-            ),
-            CarouselSlider(
-              options: CarouselOptions(
-                height: 200.0,
-                enlargeCenterPage: true,
-                autoPlay: true,
-                aspectRatio: 16/9,
-                autoPlayCurve: Curves.fastOutSlowIn,
-                enableInfiniteScroll: true,
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                viewportFraction: 0.9,
-              ),
-              items: [
-                'lib/images/cetaphil.png',
-                'lib/images/cerave1.png',
-                'lib/images/derma.png',
-                'lib/images/mamaearth1.png',
-                // Add more images as needed
-              ].map((item) => Image.asset(item, fit: BoxFit.cover)).toList(),
-            ),
-          ],
-        ),
-      ),
       bottomNavigationBar: Container(
         color: Colors.black,
         child: Padding(
@@ -124,14 +89,10 @@ class _dashpageState extends State<dashpage> {
                 text: 'Profile',
               ),
             ],
-            selectedIndex: 0,
+            selectedIndex: 2,
           ),
         ),
       ),
     );
   }
-}
-
-void onSearch(String query) {
-  //code to perform search based on the query
 }
