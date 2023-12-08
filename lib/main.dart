@@ -1,15 +1,22 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:skin_sync/pages/authentication/firstpage.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:skin_sync/pages/authentication/login.dart';
 import 'package:skin_sync/pages/authentication/signup.dart';
 import 'package:skin_sync/pages/slides/Dashboard.dart';
-import 'package:skin_sync/pages/slides/DetailPage.dart';
+import 'package:skin_sync/pages/slides/SearchPage.dart';
+import 'package:skin_sync/pages/slides/SettingPage.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const MyApp());
+Future<void> main() async {
+
+ // WidgetsFlutterBinding.ensureInitialized();
+  //await Firebase.initializeApp();
+  runApp(MyApp());
+
+
+
+  //////
 }
 
 class MyApp extends StatelessWidget {
@@ -19,7 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false   ,
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -40,7 +47,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:dashpage(),
+      home:  dashpage(),
     );
   }
 }

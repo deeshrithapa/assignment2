@@ -46,7 +46,7 @@ dependencies:
   google_sign_in:
   flutter_svg:
   google_nav_bar:
-  provider: ^6.1.1
+  provider:
   flutter_staggered_grid_view:
 
 

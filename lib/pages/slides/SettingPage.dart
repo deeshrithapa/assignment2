@@ -5,6 +5,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skin_sync/pages/authentication/firstpage.dart';
 import 'package:skin_sync/pages/slides/Terms.dart';
 
+import 'Dashboard.dart';
+import 'DetailPage.dart';
+import 'SearchPage.dart';
+
 class SettingPage extends StatefulWidget {
   SettingPage({Key? key}) : super(key: key);
   @override
@@ -28,6 +32,46 @@ class _SettingPageState extends State<SettingPage>{
   }
 
   int _selectedIndex=0;
+
+  void _onTabChange(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    // Navigate to the selected page
+    switch (index) {
+      case 0:
+      // Home page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => dashpage()),
+        );
+        break;
+      case 1:
+      // Search page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SearchPage()),
+        );
+        break;
+      case 2:
+      // Cart page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => detailpage()),
+        );
+        break;
+      case 3:
+      // Settings page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SettingPage()),
+        );
+        break;
+      default:
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -126,10 +170,7 @@ class _SettingPageState extends State<SettingPage>{
             tabBackgroundColor: Colors.grey.shade800,
             gap: 8,
             onTabChange: (index){
-              setState(() {
-                _selectedIndex = index;
-              });
-
+              _onTabChange(index);
             },
 
             padding: EdgeInsets.all(16),
@@ -217,50 +258,5 @@ class _SettingPageState extends State<SettingPage>{
     );
   }
 
-  /*GestureDetector buildAccountOption (BuildContext context, String title){
-    return GestureDetector(
-      onTap: (){
-        showDialog(context: context, builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text(title),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text("Option 1"),
-                Text("Option 2")
 
-              ],
-            ),
-            actions: [
-              TextButton(
-                  onPressed: (){
-                    Navigator.of(context).pop();
-              },
-                  child: Text("Close")
-              )
-
-            ],
-          );
-
-
-        });
-
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(title, style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
-              color: Colors.grey[600]
-            )),
-            Icon(Icons.arrow_forward_ios, color: Colors.grey)
-
-          ],
-        ),
-      ),
-    );
-  }*/
 }

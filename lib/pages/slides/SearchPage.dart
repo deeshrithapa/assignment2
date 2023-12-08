@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
+import 'Dashboard.dart';
+import 'DetailPage.dart';
+import 'SettingPage.dart';
+
 class SearchPage extends StatefulWidget {
   SearchPage({Key? key}) : super(key: key);
   @override
@@ -16,6 +20,45 @@ class _SearchPageState extends State<SearchPage> {
     "https://www.dotandkey.com/cdn/shop/collections/Catagory-desktop-banner_2.png?v=1610816960",
     "https://cdn.shopify.com/s/files/1/0567/1937/6535/files/tcfs_shopify_slideshow_-DESKTOP_4.png?v=1630838217",
   ];
+  void _onTabChange(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    // Navigate to the selected page
+    switch (index) {
+      case 0:
+      // Home page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => dashpage()),
+        );
+        break;
+      case 1:
+      // Search page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SearchPage()),
+        );
+        break;
+      case 2:
+      // Cart page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => detailpage()),
+        );
+        break;
+      case 3:
+      // Settings page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SettingPage()),
+        );
+        break;
+      default:
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,11 +150,9 @@ class _SearchPageState extends State<SearchPage> {
             tabBackgroundColor: Colors.grey.shade800,
             gap: 8,
             onTabChange: (index){
-              setState(() {
-                _selectedIndex = index;
-              });
+              _onTabChange(index);
+              },
 
-            },
 
             padding: EdgeInsets.all(16),
             tabs: const[
