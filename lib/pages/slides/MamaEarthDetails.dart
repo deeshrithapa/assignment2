@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:carousel_slider/carousel_slider.dart'; // Import CarouselSlider package
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 import '../../components/data_detailpage.dart';
@@ -10,13 +10,14 @@ import 'Dashboard.dart';
 import 'SearchPage.dart';
 import 'SettingPage.dart';
 
-class DetailPage extends StatefulWidget {
+class MamaEarthDetails extends StatefulWidget {
   @override
   _DetailPageState createState() => _DetailPageState();
 }
 
-class _DetailPageState extends State<DetailPage> {
-  int _selectedIndex=0;
+class _DetailPageState extends State<MamaEarthDetails> {
+  int _selectedIndex = 0;
+
   void _onTabChange(int index) {
     setState(() {
       _selectedIndex = index;
@@ -56,6 +57,7 @@ class _DetailPageState extends State<DetailPage> {
         break;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +81,7 @@ class _DetailPageState extends State<DetailPage> {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      'Cetaphil Products',
+                      'MamaEarth Products',
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 18,
@@ -90,26 +92,7 @@ class _DetailPageState extends State<DetailPage> {
               ),
 
               // Add CarouselSlider
-
               SizedBox(height: 20), // Adjust the height based on your preference
-              /*CarouselSlider(
-                options: CarouselOptions(
-                  height: 200.0,
-                  enlargeCenterPage: true,
-                  autoPlay: true,
-                  aspectRatio: 16/9,
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  enableInfiniteScroll: true,
-                  autoPlayAnimationDuration: Duration(milliseconds: 800),
-                  viewportFraction: 0.9,
-                ),
-                items: [
-                  'lib/images/cetaphil.png',
-                  'lib/images/cetaphil1.png',
-                  'lib/images/cetaphil2.png',
-                  // Add more images as needed
-                ].map((item) => Image.asset(item, fit: BoxFit.cover)).toList(),
-              ),*/
 
               Expanded(
                 child: Container(
@@ -121,7 +104,7 @@ class _DetailPageState extends State<DetailPage> {
                       crossAxisSpacing: 20,
                       childAspectRatio: 0.73,
                     ),
-                    itemCount: 4,
+                    itemCount: 6, // Updated to display 4 items (from index 2 to 5)
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         child: Column(
@@ -131,7 +114,7 @@ class _DetailPageState extends State<DetailPage> {
                               child: Container(
                                 width: double.maxFinite,
                                 decoration: BoxDecoration(
-                                  color: Color(data_detailpage[index]['color']),
+                                  color: Color(data_detailpage[index + 2]['color']),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Center(
@@ -148,11 +131,11 @@ class _DetailPageState extends State<DetailPage> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: CircleAvatar(
                                           radius: 55,
-                                          backgroundColor: Color(data_detailpage[index]['color']).withOpacity(0.5),
+                                          backgroundColor: Color(data_detailpage[index + 2]['color']).withOpacity(0.5),
                                         ),
                                       ),
                                       Image.asset(
-                                        data_detailpage[index]['image'],
+                                        data_detailpage[index + 4]['image'], // Adjust index to start from 2
                                         height: 160,
                                       ),
                                     ],
@@ -160,11 +143,11 @@ class _DetailPageState extends State<DetailPage> {
                                 ),
                               ),
                             ),
-                            Text(data_detailpage[index]['name'],
+                            Text(data_detailpage[index + 2]['name'],
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.w400)),
                             Text(
-                              r'Rs.' + data_detailpage[index]['price'],
+                              r'Rs.' + data_detailpage[index + 2]['price'],
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.w700),
                             ),
@@ -172,7 +155,7 @@ class _DetailPageState extends State<DetailPage> {
                             ElevatedButton(
                               onPressed: () {
                                 // Handle add to cart logic here
-                                print('Added to Cart: ${data_detailpage[index]['name']}');
+                                print('Added to Cart: ${data_detailpage[index + 2]['name']}');
                               },
                               child: Text('Add to Cart'),
                             ),
@@ -190,20 +173,18 @@ class _DetailPageState extends State<DetailPage> {
       bottomNavigationBar: Container(
         color: Colors.black,
         child: Padding(
-          padding: const EdgeInsets.symmetric( horizontal: 15, vertical:20),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           child: GNav(
             backgroundColor: Colors.black,
             color: Colors.white,
             activeColor: Colors.white,
             tabBackgroundColor: Colors.grey.shade800,
             gap: 8,
-            onTabChange: (index){
+            onTabChange: (index) {
               _onTabChange(index);
             },
-
             padding: EdgeInsets.all(16),
-            tabs: const[
-
+            tabs: const [
               GButton(
                 icon: Icons.home,
                 text: 'Home',
@@ -225,7 +206,6 @@ class _DetailPageState extends State<DetailPage> {
           ),
         ),
       ),
-
     );
   }
 }

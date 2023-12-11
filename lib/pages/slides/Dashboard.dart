@@ -4,8 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:skin_sync/pages/slides/CartPage.dart';
+import 'package:skin_sync/pages/slides/MamaEarthDetails.dart';
 import 'package:skin_sync/pages/slides/SearchPage.dart';
 import 'package:skin_sync/pages/slides/SettingPage.dart';
+
+import 'CeraVeDetails.dart';
+import 'DC_detailpage.dart';
+import 'DetailPage.dart';
+import 'Terms.dart';
 
 class dashpage extends StatefulWidget {
   const dashpage({super.key});
@@ -55,6 +61,32 @@ class _dashpageState extends State<dashpage> {
         break;
     }
   }
+  void _goToMamaEarthDetailsPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => MamaEarthDetails()),
+    );
+  }
+  void _goToDetailsPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => DetailPage()),
+    );
+  }
+  void _goToCeraVeDetailsPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CVDetails()),
+    );
+  }
+  void _goToDCDetailsPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => DC_detailpage()),
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -81,7 +113,6 @@ class _dashpageState extends State<dashpage> {
                   viewportFraction: 0.9,
                 ),
                 items: [
-                  'lib/images/cetaphil.png',
                   'lib/images/cerave1.png',
                   'lib/images/DermaCo.png',
                   'lib/images/mamaearth1.png',
@@ -89,10 +120,12 @@ class _dashpageState extends State<dashpage> {
                 ].map((item) => Image.asset(item, fit: BoxFit.cover)).toList(),
               ),
               Padding(
-                padding: EdgeInsets.only(top:20, right: 230),
+                padding: EdgeInsets.only(top:20,),
               child: Text("Top Brand Picks",
                 style: TextStyle(
-                  fontSize: 20,),
+                  fontSize: 20,
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center, // Added this line for center alignment
               ),
               ),
               Container(
@@ -101,9 +134,11 @@ class _dashpageState extends State<dashpage> {
                   borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
                 ),
                 padding: EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    ClipRRect(
+                child: GestureDetector(
+                  onTap: _goToCeraVeDetailsPage,
+                  child: Column(
+                    children: [
+                      ClipRRect(
                       borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
                       child: Image.asset(
                         'lib/images/cerave2.png', // Replace with your image asset path
@@ -122,6 +157,7 @@ class _dashpageState extends State<dashpage> {
                       ),
                     ),
                   ],
+                  ),
                 ),
               ),
               Container(
@@ -130,9 +166,11 @@ class _dashpageState extends State<dashpage> {
                   borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
                 ),
                 padding: EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    ClipRRect(
+                child: GestureDetector(
+                  onTap: _goToDetailsPage,
+                  child: Column(
+                    children: [
+                      ClipRRect(
                       borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
                       child: Image.asset(
                         'lib/images/cetaphil1.png', // Replace with your image asset path
@@ -151,6 +189,7 @@ class _dashpageState extends State<dashpage> {
                       ),
                     ),
                   ],
+                  ),
                 ),
               ),
               Container(
@@ -159,9 +198,11 @@ class _dashpageState extends State<dashpage> {
                   borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
                 ),
                 padding: EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    ClipRRect(
+                child: GestureDetector(
+                  onTap: _goToDCDetailsPage,
+                  child: Column(
+                    children: [
+                      ClipRRect(
                       borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
                       child: Image.asset(
                         'lib/images/derma.png', // Replace with your image asset path
@@ -181,6 +222,7 @@ class _dashpageState extends State<dashpage> {
                     ),
                   ],
                 ),
+                ),
               ),
               Container(
                 decoration: BoxDecoration(
@@ -188,9 +230,11 @@ class _dashpageState extends State<dashpage> {
                   borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
                 ),
                 padding: EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    ClipRRect(
+                child: GestureDetector(
+                  onTap: _goToMamaEarthDetailsPage,
+                  child: Column(
+                    children: [
+                      ClipRRect(
                       borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
                       child: Image.asset(
                         'lib/images/mamaearth2.png', // Replace with your image asset path
@@ -210,6 +254,7 @@ class _dashpageState extends State<dashpage> {
                     ),
                   ],
                 ),
+              ),
               ),
             ],
           ),

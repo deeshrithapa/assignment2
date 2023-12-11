@@ -91,14 +91,38 @@ flutter:
     - lib/images/TheOrdinary.png
     - lib/images/Ordinary1.png
     - lib/images/skincare_hand.png
-    - lib/images/cetaphil.png
     - lib/images/ordinary2.png
     - lib/images/cerave1.png
     - lib/images/derma.png
     - lib/images/mamaearth1.png
     - lib/images/cerave2.png
     - lib/images/cetaphil1.png
+    - lib/images/cetaphil2.png
     - lib/images/mamaearth2.png
+    - lib/images/GentleCleanser.png
+    - lib/images/EyeCream.png
+    - lib/images/CetaphilMoisturizingCream.png
+    - lib/images/ExfoliatingScrub.png
+    - lib/images/ME_CharcoalFaceScrub.png
+    - lib/images/ME_CharcoalFaceWash.png
+    - lib/images/ME_TeaTreeFashWash.png
+    - lib/images/ME_VitaminCFaceMoisturizer.png
+    - lib/images/ME_VitaminCSerum.png
+    - lib/images/ME_VitaminCToner.png
+    - lib/images/CV_MoisturizingCream.png
+    - lib/images/CV_FoamingFaceWash.png
+    - lib/images/CV_RenewingSACleanser.png
+    - lib/images/CV_HydratingToner.png
+    - lib/images/CV_HydratingMicellaeWater.png
+    - lib/images/CV_AcneBenzoylPeroxideCleanser.png
+    - lib/images/DC_VitaminCFaceSerum.png
+    - lib/images/DC_VitaminCBodyWash.png
+    - lib/images/DC_HyaluronAquaLightGel.png
+    - lib/images/DC_CicaglowFacWash.png
+    - lib/images/DC_RetinolSerum.png
+    - lib/images/DC_OilControlFaceWash.png
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
