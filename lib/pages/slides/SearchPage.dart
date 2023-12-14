@@ -147,7 +147,7 @@ class _SearchPageState extends State<SearchPage> {
             gap: 8,
             onTabChange: (index){
               _onTabChange(index);
-              },
+            },
 
 
             padding: EdgeInsets.all(16),

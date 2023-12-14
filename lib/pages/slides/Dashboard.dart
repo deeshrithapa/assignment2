@@ -121,12 +121,12 @@ class _dashpageState extends State<dashpage> {
               ),
               Padding(
                 padding: EdgeInsets.only(top:20,),
-              child: Text("Top Brand Picks",
-                style: TextStyle(
-                  fontSize: 20,
-                    fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center, // Added this line for center alignment
-              ),
+                child: Text("Top Brand Picks",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center, // Added this line for center alignment
+                ),
               ),
               Container(
                 decoration: BoxDecoration(
@@ -139,28 +139,28 @@ class _dashpageState extends State<dashpage> {
                   child: Column(
                     children: [
                       ClipRRect(
-                      borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
-                      child: Image.asset(
-                        'lib/images/cerave2.png', // Replace with your image asset path
-                        width: 400,
-                        height: 200,
-                        fit: BoxFit.cover,
+                        borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
+                        child: Image.asset(
+                          'lib/images/cerave2.png', // Replace with your image asset path
+                          width: 400,
+                          height: 200,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      "Cerave",
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                      SizedBox(height: 10),
+                      Text(
+                        "Cerave",
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
                   ),
                 ),
               ),
-              Container(
+             Container(
                 decoration: BoxDecoration(
                   color: Colors.brown.shade50,
                   borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
@@ -171,24 +171,24 @@ class _dashpageState extends State<dashpage> {
                   child: Column(
                     children: [
                       ClipRRect(
-                      borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
-                      child: Image.asset(
-                        'lib/images/cetaphil1.png', // Replace with your image asset path
-                        width: 400,
-                        height: 200,
-                        fit: BoxFit.cover,
+                        borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
+                        child: Image.asset(
+                          'lib/images/cetaphil1.png', // Replace with your image asset path
+                          width: 400,
+                          height: 200,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      "Cetaphil",
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                      SizedBox(height: 10),
+                      Text(
+                        "Cetaphil",
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
                   ),
                 ),
               ),
@@ -203,25 +203,25 @@ class _dashpageState extends State<dashpage> {
                   child: Column(
                     children: [
                       ClipRRect(
-                      borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
-                      child: Image.asset(
-                        'lib/images/derma.png', // Replace with your image asset path
-                        width: 400,
-                        height: 200,
-                        fit: BoxFit.cover,
+                        borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
+                        child: Image.asset(
+                          'lib/images/derma.png', // Replace with your image asset path
+                          width: 400,
+                          height: 200,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      "The DermaCo",
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                      SizedBox(height: 10),
+                      Text(
+                        "The DermaCo",
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
                 ),
               ),
               Container(
@@ -235,26 +235,26 @@ class _dashpageState extends State<dashpage> {
                   child: Column(
                     children: [
                       ClipRRect(
-                      borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
-                      child: Image.asset(
-                        'lib/images/mamaearth2.png', // Replace with your image asset path
-                        width: 400,
-                        height: 200,
-                        fit: BoxFit.cover,
+                        borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
+                        child: Image.asset(
+                          'lib/images/mamaearth2.png', // Replace with your image asset path
+                          width: 400,
+                          height: 200,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      "Mamaearth",
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                      SizedBox(height: 10),
+                      Text(
+                        "Mamaearth",
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
               ),
             ],
           ),

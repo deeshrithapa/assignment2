@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart'; // Import CarouselSlider package
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:provider/provider.dart';
 
 import '../../components/data_detailpage.dart';
 import '../../components/item_detailpage.dart';
+import '../../models/Cart.dart';
+import '../../models/cart_provider.dart';
 import 'CartPage.dart';
 import 'Dashboard.dart';
 import 'SearchPage.dart';
@@ -92,7 +95,7 @@ class _DetailPageState extends State<DetailPage> {
               // Add CarouselSlider
 
               SizedBox(height: 20), // Adjust the height based on your preference
-              /*CarouselSlider(
+CarouselSlider(
                 options: CarouselOptions(
                   height: 200.0,
                   enlargeCenterPage: true,
@@ -109,7 +112,8 @@ class _DetailPageState extends State<DetailPage> {
                   'lib/images/cetaphil2.png',
                   // Add more images as needed
                 ].map((item) => Image.asset(item, fit: BoxFit.cover)).toList(),
-              ),*/
+              ),
+
 
               Expanded(
                 child: Container(
@@ -171,8 +175,22 @@ class _DetailPageState extends State<DetailPage> {
                             // Add to Cart Button
                             ElevatedButton(
                               onPressed: () {
-                                // Handle add to cart logic here
-                                print('Added to Cart: ${data_detailpage[index]['name']}');
+                                // Get the CartProvider instance
+                                var cartProvider = context.read<CartProvider>();
+
+                                // Add the selected item to the cart
+                                cartProvider.addToCart(CartItem(
+                                  name: data_detailpage[index + 10]['name'],
+                                  price: double.parse(data_detailpage[index + 10]['price']),
+                                  imagePath: data_detailpage[index + 10]['image'],
+                                ),);
+
+                                //  Show a snackbar or navigate to the cart page
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Added to Cart: ${data_detailpage[index + 10]['name']}'),
+                                  ),
+                                );
                               },
                               child: Text('Add to Cart'),
                             ),

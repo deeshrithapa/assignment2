@@ -134,18 +134,18 @@ class _SettingPageState extends State<SettingPage>{
             Center(
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)
-                  )
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)
+                    )
                 ),
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder: (context)=> firstpage()),);
                 },
                 child: Text("Sign Out", style: TextStyle(
-                  fontSize: 16,
-                  letterSpacing: 2.2,
-                  color: Colors.black
+                    fontSize: 16,
+                    letterSpacing: 2.2,
+                    color: Colors.black
                 )),
               ),
 
@@ -203,27 +203,27 @@ class _SettingPageState extends State<SettingPage>{
   }
   Padding buildNotificationOption(String title, bool value, Function onChangeMethod){
     return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(title, style: TextStyle(
+        children: [
+          Text(title, style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
               color: Colors.grey[600]
-            )),
-            Transform.scale(
-              scale: 0.7,
-              child: CupertinoSwitch(
-                activeColor: Colors.blue,
-                trackColor: Colors.grey,
-                value: value,
-                onChanged: (bool newValue){
-                  onChangeMethod(newValue);
-                },
-              ),
-            )
-          ],
+          )),
+          Transform.scale(
+            scale: 0.7,
+            child: CupertinoSwitch(
+              activeColor: Colors.blue,
+              trackColor: Colors.grey,
+              value: value,
+              onChanged: (bool newValue){
+                onChangeMethod(newValue);
+              },
+            ),
+          )
+        ],
       ),
     );
   }
