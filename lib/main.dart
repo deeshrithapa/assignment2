@@ -1,30 +1,21 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:skin_sync/pages/authentication/firstpage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:skin_sync/pages/authentication/login.dart';
 import 'package:skin_sync/pages/authentication/signup.dart';
-
-import 'package:skin_sync/pages/slides/CartPage.dart';
-import 'package:skin_sync/pages/slides/CeraVeDetails.dart';
 import 'package:skin_sync/pages/slides/Dashboard.dart';
 import 'package:skin_sync/pages/slides/DetailPage.dart';
 import 'package:skin_sync/pages/slides/SearchPage.dart';
 import 'package:skin_sync/pages/slides/SettingPage.dart';
 
-import 'components/button.dart';
 import 'components/item_detailpage.dart';
-import 'models/cart_provider.dart';
 
 Future<void> main() async {
 
-  //WidgetsFlutterBinding.ensureInitialized();
-  //await Firebase.initializeApp();
-  runApp(ChangeNotifierProvider(
-    create: (context) => CartProvider(),
-    child: MyApp(),
-  ),);
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -55,7 +46,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  dashpage(),
+      home:  firstpage(),
     );
   }
 }
