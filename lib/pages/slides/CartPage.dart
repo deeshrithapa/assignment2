@@ -68,12 +68,12 @@ class _cartpageState extends State<cartpage> {
           CartItem item = cartProvider.cartItems[index];
           return ListTile(
             title: Text(item.name),
-            subtitle: Text('Price: \$${item.price.toString()}'),
+            subtitle: Text('Price: \Rs. ${item.price.toString()}'),
             leading: Container(
               width: 80.0, // Set your desired width
-              height: 80.0, // Set your desired height
+              //height: 180.0, // Set your desired height
               child: Image.asset(
-                'images/${item.imagePath}',
+                '${item.imagePath}',
                 fit: BoxFit.cover, // Adjust the fit based on your preference
               ),
             ),
