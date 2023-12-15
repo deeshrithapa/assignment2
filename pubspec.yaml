@@ -49,6 +49,7 @@ dependencies:
   provider:
   flutter_staggered_grid_view:
   font_awesome_flutter:
+  flutter_search_bar:
 
 
 

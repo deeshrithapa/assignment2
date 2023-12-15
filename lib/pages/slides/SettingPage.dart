@@ -112,6 +112,7 @@ class _SettingPageState extends State<SettingPage>{
             ),
             Divider(height: 20, thickness: 1),
             SizedBox(height: 10),
+            buildAccountOption(context, "Account Settings "),
             buildAccountOption(context, "Order History"),
             buildAccountOption(context, "Terms and Services"),
             SizedBox(height: 40),
