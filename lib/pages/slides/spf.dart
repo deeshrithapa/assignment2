@@ -217,7 +217,7 @@ class _spfDetailPageState extends State<spfDetail> {
                 text: 'Profile',
               ),
             ],
-            selectedIndex: 0,
+            selectedIndex: 1,
           ),
         ),
       ),

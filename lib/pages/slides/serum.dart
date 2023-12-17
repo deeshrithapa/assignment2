@@ -217,7 +217,7 @@ class _serumDetailPageState extends State<serumDetail> {
                 text: 'Profile',
               ),
             ],
-            selectedIndex: 0,
+            selectedIndex: 1,
           ),
         ),
       ),
