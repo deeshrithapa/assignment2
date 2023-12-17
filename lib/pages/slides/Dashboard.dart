@@ -116,7 +116,7 @@ class _dashpageState extends State<dashpage> {
                   'lib/images/cerave1.png',
                   'lib/images/DermaCo.png',
                   'lib/images/mamaearth1.png',
-                  // Add more images as needed
+                  'lib/images/cetaphil2.png',
                 ].map((item) => Image.asset(item, fit: BoxFit.cover)).toList(),
               ),
               Padding(
