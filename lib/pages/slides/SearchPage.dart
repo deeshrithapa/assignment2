@@ -123,7 +123,7 @@ class _SearchPageState extends State<SearchPage> {
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(
-                        hintText: 'Search for products and more',
+                        hintText: 'Search for products',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
