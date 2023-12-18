@@ -49,6 +49,7 @@ dependencies:
   provider:
   flutter_staggered_grid_view:
   font_awesome_flutter:
+  flutter_search_bar:
 
 
 
@@ -121,6 +122,12 @@ flutter:
     - lib/images/DC_CicaglowFacWash.png
     - lib/images/DC_RetinolSerum.png
     - lib/images/DC_OilControlFaceWash.png
+    - lib/images/SunscreenSPF30.png
+    - lib/images/SunscreenSPF50.png
+    - lib/images/CetaphilSuncreenSPF50.png
+    - lib/images/sunscreenspf50Cetaphil.png
+    - lib/images/NiacinamideSerum.png
+    - lib/images/RiceFaceSerum.png
 
 
 

@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -109,20 +110,28 @@ class _SearchPageState extends State<SearchPage> {
               SizedBox(height: 10), // some space between search bar and image
               Container(
                 height: 200,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: images.length,
-                  itemBuilder: (context, index) {
+                child: CarouselSlider(
+                  items: images.map((url) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Image.network(
-                        images[index],
+                        url,
                         height: 150,
                         width: 300,
                         fit: BoxFit.cover,
                       ),
                     );
-                  },
+                  }).toList(),
+                  options: CarouselOptions(
+                    height: 200.0,
+                    enlargeCenterPage: true,
+                    autoPlay: true,
+                    aspectRatio: 16/9,
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    enableInfiniteScroll: true,
+                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    viewportFraction: 0.8,
+                  ),
                 ),
               ),
 
