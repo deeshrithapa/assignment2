@@ -107,6 +107,7 @@ CarouselSlider(
                   viewportFraction: 0.9,
                 ),
                 items: [
+                  'lib/images/cetaphil.png',
                   'lib/images/cetaphil1.png',
                   'lib/images/cetaphil2.png',
                   // Add more images as needed

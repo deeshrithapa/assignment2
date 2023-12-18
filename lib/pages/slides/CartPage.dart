@@ -71,7 +71,7 @@ class _cartpageState extends State<cartpage> {
             subtitle: Text('Price: \Rs. ${item.price.toString()}'),
             leading: Container(
               width: 80.0, // Set your desired width
-              //height: 180.0, // Set your desired height
+              height: 80.0, // Set your desired height
               child: Image.asset(
                 '${item.imagePath}',
                 fit: BoxFit.cover, // Adjust the fit based on your preference
