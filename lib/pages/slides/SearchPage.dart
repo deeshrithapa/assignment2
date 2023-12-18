@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:skin_sync/pages/slides/CartPage.dart';
+import 'package:skin_sync/pages/slides/serum.dart';
+import 'package:skin_sync/pages/slides/spf.dart';
 import 'Dashboard.dart';
 import 'DetailPage.dart';
 import 'SettingPage.dart';
@@ -16,6 +18,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
 
   int _selectedIndex=0;
+  String _currentQuery = ""; // Declare _currentQuery at the class level
 
   List<String> images = [
     "https://iambodyboom.com/cdn/shop/collections/Bodyboom_Shopify_Banner_1_-_Desktop_No_Text.png?v=1682531929&width=3200",
@@ -61,6 +64,43 @@ class _SearchPageState extends State<SearchPage> {
         break;
     }
   }
+  void onSearch(String query) {
+    // Check the query and navigate accordingly
+    switch (query.toLowerCase()) {
+      case "serum":
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => serumDetail()),
+        );
+        break;
+      case "spf":
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => spfDetail()),
+        );
+        break;
+      default:
+      // Show a pop-up message for other queries
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("No Products Found"),
+              content: Text("Sorry, we couldn't find any products for your search."),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("OK"),
+                ),
+              ],
+            );
+          },
+        );
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,10 +131,19 @@ class _SearchPageState extends State<SearchPage> {
                           icon: Icon(Icons.clear),
                           onPressed: () {
                             //code to clear the text field
+                            setState(() {
+                              _currentQuery = "";
+                            });
                           },
                         ),
                       ),
                       onChanged: (query) {
+                        setState(() {
+                          _currentQuery = query;
+                        });
+                      },
+                      onSubmitted: (query) {
+                        // Show the pop-up message when the user presses Enter
                         onSearch(query);
                       },
                     ),
@@ -102,7 +151,8 @@ class _SearchPageState extends State<SearchPage> {
                   IconButton(
                     icon: Icon(Icons.search),
                     onPressed: () {
-                      //code to perform search
+                      // Call the onSearch function with the current query
+                      onSearch(_currentQuery);
                     },
                   ),
                 ],
