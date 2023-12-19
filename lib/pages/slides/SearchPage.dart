@@ -6,11 +6,10 @@ import 'package:skin_sync/pages/slides/CartPage.dart';
 import 'package:skin_sync/pages/slides/serum.dart';
 import 'package:skin_sync/pages/slides/spf.dart';
 import 'Dashboard.dart';
-import 'DetailPage.dart';
 import 'SettingPage.dart';
 import 'facewash.dart';
-import 'spf.dart';
-import 'serum.dart';
+import 'moisturizer.dart';
+
 
 
 class SearchPage extends StatefulWidget {
@@ -146,6 +145,20 @@ class _SearchPageState extends State<SearchPage> {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => serumDetail()),
+        );
+        break;
+      case 2:
+      // Navigate to a detail page for the second additional image
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => moisturizerDetail()),
+        );
+        break;
+      case 3:
+      // Navigate to a detail page for the second additional image
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => facewashDetail()),
         );
         break;
     // Add more cases if needed...

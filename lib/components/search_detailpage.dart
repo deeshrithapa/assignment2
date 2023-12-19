@@ -113,4 +113,29 @@ List<Map<String, dynamic>> search_detailpage = [
     'name': 'Foaming FaceWash',
     'price': ' 700',
   },
+  //moisturizer
+  {
+    'color': 0xFFFFFFFF,
+    'image': 'lib/images/AdvancedSnail.png', // Update the path based on your folder structure
+    'name': 'Advanced Snail Moisturizer',
+    'price': ' 700',
+  },
+  {
+    'color': 0xFFFFFFFF,
+    'image': 'lib/images/CetaphilMoisturizingCream.png', // Update the path based on your folder structure
+    'name': 'Cetaphil Moisturizing Cream',
+    'price': ' 700',
+  },
+  {
+    'color': 0xFFFFFFFF,
+    'image': 'lib/images/ME_VitaminCFaceMoisturizer.png', // Update the path based on your folder structure
+    'name': 'VitaminC Face Moisturizer',
+    'price': ' 700',
+  },
+  {
+    'color': 0xFFFFFFFF,
+    'image': 'lib/images/CV_MoisturizingCream.png', // Update the path based on your folder structure
+    'name': 'Cerave Moisturizer',
+    'price': ' 700',
+  },
 ];
