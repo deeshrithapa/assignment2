@@ -20,8 +20,8 @@ import 'models/cart_provider.dart';
 
 Future<void> main() async {
 
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  //WidgetsFlutterBinding.ensureInitialized();
+  //await Firebase.initializeApp();
   runApp(ChangeNotifierProvider(
     create: (context) => CartProvider(),
     child: MyApp(),
@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  firstpage(),
+      home:  DetailPage(),
     );
   }
 }

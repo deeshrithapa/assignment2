@@ -128,6 +128,20 @@ CarouselSlider(
                     itemCount: 4,
                     itemBuilder: (context, index) {
                       return GestureDetector(
+                        onTap: () {
+                          // Handle the onTap event for the entire item
+                          print('Item tapped for product: ${data_detailpage[index]['name']}');
+
+                          // Navigate to the item detail page
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Item(
+                                itemName: data_detailpage[index]['name'],
+                              ),
+                            ),
+                          );
+                        },
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -155,9 +169,16 @@ CarouselSlider(
                                           backgroundColor: Color(data_detailpage[index]['color']).withOpacity(0.5),
                                         ),
                                       ),
-                                      Image.asset(
-                                        data_detailpage[index]['image'],
-                                        height: 160,
+                                      GestureDetector(
+                                        onTap: () {
+                                          // Handle the onTap event for the image
+                                          print('Image tapped for product: ${data_detailpage[index]['name']}');
+                                          // You can add navigation logic or any other action here
+                                        },
+                                        child: Image.asset(
+                                          data_detailpage[index]['image'],
+                                          height: 160,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -172,20 +193,15 @@ CarouselSlider(
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.w700),
                             ),
-                            // Add to Cart Button
                             ElevatedButton(
                               onPressed: () {
-                                // Get the CartProvider instance
                                 var cartProvider = context.read<CartProvider>();
-
-                                // Add the selected item to the cart
                                 cartProvider.addToCart(CartItem(
                                   name: data_detailpage[index + 10]['name'],
                                   price: double.parse(data_detailpage[index + 10]['price']),
                                   imagePath: data_detailpage[index + 10]['image'],
                                 ),);
 
-                                //  Show a snackbar or navigate to the cart page
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text('Added to Cart: ${data_detailpage[index + 10]['name']}'),
