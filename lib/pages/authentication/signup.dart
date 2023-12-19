@@ -13,7 +13,6 @@ class signuppage extends StatefulWidget {
 }
 
 class _signuppageState extends State<signuppage> {
-
   @override
   Widget build(BuildContext context) {
     String email = "", pass="";

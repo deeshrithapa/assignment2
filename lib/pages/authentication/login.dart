@@ -133,14 +133,14 @@ class _loginpageState extends State<loginpage> {
                           GestureDetector(
                             onTap: (){
                               Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => signuppage()),);
+                                context,
+                                MaterialPageRoute(builder: (context) => signuppage()),);
                             },
                             child: Text("Sign up here", style: TextStyle(
                                 color:Colors.blueAccent, fontSize: 12, decoration: TextDecoration.underline),),
                           )
                         ],
-                      ),                      
+                      ),
                     ],
                   ),
                 ),
