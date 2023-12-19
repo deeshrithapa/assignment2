@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skin_sync/pages/authentication/firstpage.dart';
 import 'package:skin_sync/pages/slides/CartPage.dart';
 import 'package:skin_sync/pages/slides/Terms.dart';
+import 'package:skin_sync/pages/slides/update.dart';
 
 import 'Dashboard.dart';
 import 'DetailPage.dart';
@@ -26,11 +27,7 @@ class _SettingPageState extends State<SettingPage>{
       valNotify1 = newValue1;
     });
   }
-  onChangedFunction2(bool newValue2){
-    setState(() {
-      valNotify2 = newValue2;
-    });
-  }
+
 
   int _selectedIndex=0;
 
@@ -113,7 +110,7 @@ class _SettingPageState extends State<SettingPage>{
             Divider(height: 20, thickness: 1),
             SizedBox(height: 10),
 
-            buildAccountOption(context, "Order History"),
+            buildAccountOption(context, "Update Information"),
             buildAccountOption(context, "Terms and Services"),
             SizedBox(height: 40),
             Row(
@@ -130,7 +127,7 @@ class _SettingPageState extends State<SettingPage>{
             Divider(height: 20, thickness: 1),
             SizedBox(height: 10),
             buildNotificationOption("Account Active", valNotify1, onChangedFunction1),
-            buildNotificationOption("Dark Theme", valNotify2, onChangedFunction2),
+            //buildNotificationOption("Dark Theme", valNotify2, onChangedFunction2),
             SizedBox(height: 50),
             Center(
               child: OutlinedButton(
@@ -237,6 +234,12 @@ class _SettingPageState extends State<SettingPage>{
             context,
             MaterialPageRoute(builder: (context) => TermsAndConditionsPage()),
           );
+        } else if (title == "Update Information") {
+          // Navigate to Update Information page
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => UpdatePage()),
+          );
         } else {
           // Handle other options if needed
         }
@@ -259,6 +262,7 @@ class _SettingPageState extends State<SettingPage>{
       ),
     );
   }
+
 
 
 }

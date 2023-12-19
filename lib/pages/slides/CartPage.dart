@@ -8,7 +8,7 @@ import '../../models/cart_provider.dart';
 import 'SearchPage.dart';
 
 class cartpage extends StatefulWidget {
-  const cartpage({super.key});
+  const cartpage({Key? key});
 
   @override
   State<cartpage> createState() => _cartpageState();
@@ -39,7 +39,6 @@ class _cartpageState extends State<cartpage> {
         );
         break;
       case 2:
-      // Cart page
       // No need to navigate to the same page again
         break;
       case 3:
@@ -52,6 +51,27 @@ class _cartpageState extends State<cartpage> {
       default:
         break;
     }
+  }
+
+  Future<void> _showOrderConfirmationDialog() async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Order Confirmed'),
+          content: Text('Your order has been confirmed!'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                // Close the dialog
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -70,17 +90,16 @@ class _cartpageState extends State<cartpage> {
             title: Text(item.name),
             subtitle: Text('Price: \Rs. ${item.price.toString()}'),
             leading: Container(
-              width: 80.0, // Set your desired width
-              height: 80.0, // Set your desired height
+              width: 80.0,
+              height: 80.0,
               child: Image.asset(
                 '${item.imagePath}',
-                fit: BoxFit.cover, // Adjust the fit based on your preference
+                fit: BoxFit.cover,
               ),
             ),
             trailing: IconButton(
               icon: Icon(Icons.delete),
               onPressed: () {
-                // Remove the item from the cart when the delete icon is pressed
                 cartProvider.removeFromCart(item);
               },
             ),
@@ -91,35 +110,56 @@ class _cartpageState extends State<cartpage> {
         color: Colors.black,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-          child: GNav(
-            backgroundColor: Colors.black,
-            color: Colors.white,
-            activeColor: Colors.white,
-            tabBackgroundColor: Colors.grey.shade800,
-            gap: 8,
-            onTabChange: (index) {
-              _onTabChange(index);
-            },
-            padding: EdgeInsets.all(16),
-            tabs: const [
-              GButton(
-                icon: Icons.home,
-                text: 'Home',
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ElevatedButton(
+                onPressed: () async {
+                  // Show a pop-up message indicating the order has been confirmed
+                  await _showOrderConfirmationDialog();
+
+                  // You can perform additional actions here if needed
+
+                  // Navigate to the dashboard page after confirming the order
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => dashpage()),
+                  );
+                },
+                child: Text('Checkout'),
               ),
-              GButton(
-                icon: Icons.search,
-                text: 'Search',
-              ),
-              GButton(
-                icon: Icons.shopping_cart,
-                text: 'My Cart',
-              ),
-              GButton(
-                icon: Icons.settings,
-                text: 'Profile',
+              SizedBox(height: 16),
+              GNav(
+                backgroundColor: Colors.black,
+                color: Colors.white,
+                activeColor: Colors.white,
+                tabBackgroundColor: Colors.grey.shade800,
+                gap: 8,
+                onTabChange: (index) {
+                  _onTabChange(index);
+                },
+                padding: EdgeInsets.all(16),
+                tabs: const [
+                  GButton(
+                    icon: Icons.home,
+                    text: 'Home',
+                  ),
+                  GButton(
+                    icon: Icons.search,
+                    text: 'Search',
+                  ),
+                  GButton(
+                    icon: Icons.shopping_cart,
+                    text: 'My Cart',
+                  ),
+                  GButton(
+                    icon: Icons.settings,
+                    text: 'Profile',
+                  ),
+                ],
+                selectedIndex: 2,
               ),
             ],
-            selectedIndex: 2,
           ),
         ),
       ),

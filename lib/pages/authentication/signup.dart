@@ -15,9 +15,11 @@ class signuppage extends StatefulWidget {
 class _signuppageState extends State<signuppage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  TextEditingController mobileNumberController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +60,7 @@ class _signuppageState extends State<signuppage> {
                   child: Column(
                     children: [
                       TextFormField(
+                        controller: fullNameController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your full name';
@@ -75,6 +78,7 @@ class _signuppageState extends State<signuppage> {
                       ),
                       SizedBox(height: 5,),
                       TextFormField(
+                        controller: addressController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your address';
@@ -92,9 +96,12 @@ class _signuppageState extends State<signuppage> {
                       ),
                       SizedBox(height: 5,),
                       TextFormField(
+                        controller: mobileNumberController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your mobile number';
+                          } else if (value.length != 10) {
+                            return 'Mobile number should be 10 digits';
                           }
                           return null;
                         },
@@ -113,8 +120,9 @@ class _signuppageState extends State<signuppage> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter an email address';
+                          } else if (!value.contains('@')) {
+                            return 'Invalid email address';
                           }
-                          // You can add more complex email validation if needed
                           return null;
                         },
                         decoration: InputDecoration(
@@ -132,8 +140,9 @@ class _signuppageState extends State<signuppage> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter a password';
+                          } else if (value.length < 6) {
+                            return 'Password should be at least 6 characters';
                           }
-                          // You can add more complex password validation if needed
                           return null;
                         },
                         obscureText: true,
