@@ -25,6 +25,14 @@ class _SearchPageState extends State<SearchPage> {
     "https://www.dotandkey.com/cdn/shop/collections/Catagory-desktop-banner_2.png?v=1610816960",
     "https://cdn.shopify.com/s/files/1/0567/1937/6535/files/tcfs_shopify_slideshow_-DESKTOP_4.png?v=1630838217",
   ];
+  List<String> additionalimages = [
+    "lib/images/spf.png",
+    "lib/images/serum.png",
+  ];
+  List<String> additionalimages1 = [
+    "lib/images/moisturizer.png",
+    "lib/images/facewash.png",
+  ];
   void _onTabChange(int index) {
     setState(() {
       _selectedIndex = index;
@@ -101,6 +109,27 @@ class _SearchPageState extends State<SearchPage> {
         break;
     }
   }
+
+  void onImageTapped(int index) {
+    switch (index) {
+      case 0:
+      // Navigate to a detail page for the first additional image
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => spfDetail()),
+        );
+        break;
+      case 1:
+      // Navigate to a detail page for the second additional image
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => serumDetail()),
+        );
+        break;
+    // Add more cases if needed...
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -182,6 +211,53 @@ class _SearchPageState extends State<SearchPage> {
                     autoPlayAnimationDuration: Duration(milliseconds: 800),
                     viewportFraction: 0.8,
                   ),
+                ),
+              ),
+
+              Container(
+                height: 150,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: additionalimages.asMap().entries.map((entry) {
+                    int index = entry.key;
+                    String assetPath = entry.value;
+
+                    return GestureDetector(
+                      onTap: () {
+                        // Handle tap for the specific image (index)
+                        onImageTapped(index);
+                      },
+                      child: Image.asset(
+                        assetPath,
+                        height: 80,
+                        width: 80,
+                        fit: BoxFit.cover,
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+              Container(
+                height: 150,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: additionalimages1.asMap().entries.map((entry) {
+                    int index = entry.key;
+                    String assetPath = entry.value;
+
+                    return GestureDetector(
+                      onTap: () {
+                        // Handle tap for the specific image (index)
+                        onImageTapped(index + additionalimages.length);
+                      },
+                      child: Image.asset(
+                        assetPath,
+                        height: 80,
+                        width: 80,
+                        fit: BoxFit.cover,
+                      ),
+                    );
+                  }).toList(),
                 ),
               ),
             ],

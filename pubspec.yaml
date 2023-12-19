@@ -129,6 +129,10 @@ flutter:
     - lib/images/sunscreenspf50Cetaphil.png
     - lib/images/NiacinamideSerum.png
     - lib/images/RiceFaceSerum.png
+    - lib/images/spf.png
+    - lib/images/serum.png
+    - lib/images/moisturizer.png
+    - lib/images/facewash.png
 
 
 
