@@ -165,5 +165,4 @@ List<Map<String, dynamic>> data_detailpage = [
     'name': 'Sunscreen SPF 30',
     'price': ' 700',
   },
-
 ];

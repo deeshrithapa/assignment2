@@ -95,24 +95,7 @@ class _DetailPageState extends State<DetailPage> {
               // Add CarouselSlider
 
               SizedBox(height: 20), // Adjust the height based on your preference
-CarouselSlider(
-                options: CarouselOptions(
-                  height: 200.0,
-                  enlargeCenterPage: true,
-                  autoPlay: true,
-                  aspectRatio: 16/9,
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  enableInfiniteScroll: true,
-                  autoPlayAnimationDuration: Duration(milliseconds: 800),
-                  viewportFraction: 0.9,
-                ),
-                items: [
-                  'lib/images/cetaphil.png',
-                  'lib/images/cetaphil1.png',
-                  'lib/images/cetaphil2.png',
-                  // Add more images as needed
-                ].map((item) => Image.asset(item, fit: BoxFit.cover)).toList(),
-              ),
+
 
 
               Expanded(
