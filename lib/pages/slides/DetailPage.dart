@@ -4,7 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart'; // Import CarouselSlider 
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
 
-import '../../components/data_detailpage.dart';
+import '../../components/search_detailpage.dart';
 import '../../components/item_detailpage.dart';
 import '../../models/Cart.dart';
 import '../../models/cart_provider.dart';
@@ -108,19 +108,19 @@ class _DetailPageState extends State<DetailPage> {
                       crossAxisSpacing: 20,
                       childAspectRatio: 0.73,
                     ),
-                    itemCount: 4,
+                    itemCount: 6,
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
                           // Handle the onTap event for the entire item
-                          print('Item tapped for product: ${data_detailpage[index]['name']}');
+                          print('Item tapped for product: ${search_detailpage[index]['name']}');
 
                           // Navigate to the item detail page
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => Item(
-                                itemName: data_detailpage[index]['name'],
+                                itemName: search_detailpage[index]['name'],
                               ),
                             ),
                           );
@@ -132,7 +132,7 @@ class _DetailPageState extends State<DetailPage> {
                               child: Container(
                                 width: double.maxFinite,
                                 decoration: BoxDecoration(
-                                  color: Color(data_detailpage[index]['color']),
+                                  color: Color(search_detailpage[index]['color']),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Center(
@@ -149,17 +149,17 @@ class _DetailPageState extends State<DetailPage> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: CircleAvatar(
                                           radius: 55,
-                                          backgroundColor: Color(data_detailpage[index]['color']).withOpacity(0.5),
+                                          backgroundColor: Color(search_detailpage[index]['color']).withOpacity(0.5),
                                         ),
                                       ),
                                       GestureDetector(
                                         onTap: () {
                                           // Handle the onTap event for the image
-                                          print('Image tapped for product: ${data_detailpage[index]['name']}');
+                                          print('Image tapped for product: ${search_detailpage[index]['name']}');
                                           // You can add navigation logic or any other action here
                                         },
                                         child: Image.asset(
-                                          data_detailpage[index]['image'],
+                                          search_detailpage[index]['image'],
                                           height: 160,
                                         ),
                                       ),
@@ -168,11 +168,11 @@ class _DetailPageState extends State<DetailPage> {
                                 ),
                               ),
                             ),
-                            Text(data_detailpage[index]['name'],
+                            Text(search_detailpage[index]['name'],
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.w400)),
                             Text(
-                              r'Rs.' + data_detailpage[index]['price'],
+                              r'Rs.' + search_detailpage[index]['price'],
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.w700),
                             ),
@@ -180,14 +180,14 @@ class _DetailPageState extends State<DetailPage> {
                               onPressed: () {
                                 var cartProvider = context.read<CartProvider>();
                                 cartProvider.addToCart(CartItem(
-                                  name: data_detailpage[index + 10]['name'],
-                                  price: double.parse(data_detailpage[index + 10]['price']),
-                                  imagePath: data_detailpage[index + 10]['image'],
+                                  name: search_detailpage[index + 10]['name'],
+                                  price: double.parse(search_detailpage[index + 10]['price']),
+                                  imagePath: search_detailpage[index + 10]['image'],
                                 ),);
 
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text('Added to Cart: ${data_detailpage[index + 10]['name']}'),
+                                    content: Text('Added to Cart: ${search_detailpage[index + 10]['name']}'),
                                   ),
                                 );
                               },
