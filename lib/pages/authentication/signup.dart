@@ -14,11 +14,12 @@ class signuppage extends StatefulWidget {
 }
 
 class _signuppageState extends State<signuppage> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
   TextEditingController fullNameController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController mobileNumberController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
@@ -235,6 +236,7 @@ class _signuppageState extends State<signuppage> {
         'address': addressController.text.trim(),
         'mobileNumber': mobileNumberController.text.trim(),
         'email': emailController.text.trim(),
+        'password': emailController.text.trim(),
         // Add other fields as needed
       });
 

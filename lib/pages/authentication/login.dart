@@ -14,6 +14,8 @@ class loginpage extends StatefulWidget {
 
 class _loginpageState extends State<loginpage> {
 
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 

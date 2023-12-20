@@ -83,9 +83,6 @@ class _cartpageState extends State<cartpage> {
     }
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
     var cartProvider = context.watch<CartProvider>();
