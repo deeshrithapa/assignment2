@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 
-import '../map/map_page.dart';
 import 'Dashboard.dart';
 
 class OrderConfirmPage extends StatefulWidget {
@@ -67,8 +66,6 @@ class _OrderConfirmPageState extends State<OrderConfirmPage> {
               ),
             ),
             SizedBox(height: 20),
-            MapSample(), // Add the MapSample widget here
-            SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
                 // Show a pop-up message indicating the order has been confirmed
@@ -96,4 +93,3 @@ void main() {
     home: OrderConfirmPage(),
   ));
 }
-
