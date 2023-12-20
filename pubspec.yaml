@@ -51,6 +51,8 @@ dependencies:
   font_awesome_flutter:
   flutter_search_bar:
   another_flushbar:
+  google_maps_flutter:
+  geolocator:
 
 
 

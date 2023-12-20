@@ -8,6 +8,7 @@ import 'package:skin_sync/pages/slides/SettingPage.dart';
 import '../../models/Cart.dart';
 import '../../models/cart_provider.dart';
 import 'SearchPage.dart';
+import 'order_confirm.dart';
 
 class cartpage extends StatefulWidget {
   const cartpage({Key? key});
@@ -53,27 +54,6 @@ class _cartpageState extends State<cartpage> {
       default:
         break;
     }
-  }
-
-  Future<void> _showOrderConfirmationDialog() async {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Order Confirmed'),
-          content: Text('Your order has been confirmed!'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                // Close the dialog
-                Navigator.of(context).pop();
-              },
-              child: Text('OK'),
-            ),
-          ],
-        );
-      },
-    );
   }
 
   Future<void> saveFeedbacks({
@@ -150,15 +130,10 @@ class _cartpageState extends State<cartpage> {
                   User? user = FirebaseAuth.instance.currentUser;
                   saveFeedbacks(context: context,);
 
-                  // Show a pop-up message indicating the order has been confirmed
-                  await _showOrderConfirmationDialog();
-
-                  // You can perform additional actions here if needed
-
                   // Navigate to the dashboard page after confirming the order
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => dashpage()),
+                    MaterialPageRoute(builder: (context) => OrderConfirmPage()),
                   );
                 },
                 child: Text('Checkout'),
