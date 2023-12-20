@@ -93,7 +93,7 @@ class _cartpageState extends State<cartpage> {
             // Add other fields if necessary
           });
         }
-        print('Data added to Firestore successfully');
+        print('Data added to Firestore successfully!');
       } else {
         print('User is not logged in.');
         // Handle the case where the user is not logged in if necessary
