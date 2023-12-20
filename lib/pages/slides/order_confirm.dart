@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:geolocator/geolocator.dart';
 
+
+import '../map/map_page.dart';
 import 'Dashboard.dart';
 
 class OrderConfirmPage extends StatefulWidget {
@@ -12,9 +12,6 @@ class OrderConfirmPage extends StatefulWidget {
 class _OrderConfirmPageState extends State<OrderConfirmPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
-
-  late GoogleMapController mapController;
-  LatLng? userLocation;
 
   Future<void> _showOrderConfirmationDialog() async {
     return showDialog<void>(
@@ -70,30 +67,7 @@ class _OrderConfirmPageState extends State<OrderConfirmPage> {
               ),
             ),
             SizedBox(height: 20),
-            Text(
-              'Delivery Address on Map',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10),
-            Container(
-              height: 200,
-              child: GoogleMap(
-                onMapCreated: _onMapCreated,
-                initialCameraPosition: CameraPosition(
-                  target: LatLng(0, 0),
-                  zoom: 15.0,
-                ),
-                markers: userLocation != null
-                    ? {
-                  Marker(
-                    markerId: MarkerId('userLocation'),
-                    position: userLocation!,
-                    infoWindow: InfoWindow(title: 'Delivery Location'),
-                  ),
-                }
-                    : {},
-              ),
-            ),
+            MapSample(), // Add the MapSample widget here
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
@@ -104,8 +78,8 @@ class _OrderConfirmPageState extends State<OrderConfirmPage> {
 
                 // Navigate to the dashboard page after confirming the order
                 Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => dashpage()),
+                  context,
+                  MaterialPageRoute(builder: (context) => dashpage()),
                 );
               },
               child: Text('Confirm Order'),
@@ -115,35 +89,6 @@ class _OrderConfirmPageState extends State<OrderConfirmPage> {
       ),
     );
   }
-
-  void _onMapCreated(GoogleMapController controller) {
-    setState(() {
-      mapController = controller;
-      // Get the user's current location and move the camera to that position
-      _getCurrentLocation();
-    });
-  }
-
-  Future<void> _getCurrentLocation() async {
-    try {
-      Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
-      );
-      setState(() {
-        userLocation = LatLng(position.latitude, position.longitude);
-        mapController.animateCamera(
-          CameraUpdate.newCameraPosition(
-            CameraPosition(
-              target: userLocation!,
-              zoom: 15.0,
-            ),
-          ),
-        );
-      });
-    } catch (e) {
-      print('Error getting current location: $e');
-    }
-  }
 }
 
 void main() {
@@ -151,3 +96,4 @@ void main() {
     home: OrderConfirmPage(),
   ));
 }
+

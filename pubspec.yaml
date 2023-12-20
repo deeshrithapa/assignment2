@@ -52,7 +52,7 @@ dependencies:
   flutter_search_bar:
   another_flushbar:
   google_maps_flutter:
-  geolocator:
+  google_maps_flutter_web:
 
 
 

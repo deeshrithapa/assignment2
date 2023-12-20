@@ -111,6 +111,7 @@ class _SettingPageState extends State<SettingPage>{
             SizedBox(height: 10),
 
             buildAccountOption(context, "Update Information"),
+            buildAccountOption(context, "My Order History"),
             buildAccountOption(context, "Terms and Services"),
             SizedBox(height: 40),
             Row(
