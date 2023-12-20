@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -220,10 +221,22 @@ class _signuppageState extends State<signuppage> {
 
   void signUpWithEmailAndPassword() async {
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      UserCredential authResult = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
+
+      // Get the UID of the newly created user
+      String uid = authResult.user!.uid;
+
+      // Store additional user details in Firestore
+      await FirebaseFirestore.instance.collection('users').doc(uid).set({
+        'fullName': fullNameController.text.trim(),
+        'address': addressController.text.trim(),
+        'mobileNumber': mobileNumberController.text.trim(),
+        'email': emailController.text.trim(),
+        // Add other fields as needed
+      });
 
       // Navigate to the dashboard or perform other actions
       Navigator.push(
@@ -240,3 +253,8 @@ class _signuppageState extends State<signuppage> {
     }
   }
 }
+
+
+
+
+
