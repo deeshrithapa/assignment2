@@ -22,8 +22,8 @@ import 'models/cart_provider.dart';
 
 Future<void> main() async {
 
-  //WidgetsFlutterBinding.ensureInitialized();
-  //await Firebase.initializeApp();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(ChangeNotifierProvider(
     create: (context) => CartProvider(),
     child: MyApp(),
