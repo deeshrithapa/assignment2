@@ -62,41 +62,44 @@ class _UpdatePageState extends State<UpdatePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            TextFormField(
-              controller: _nameController,
-              decoration: InputDecoration(labelText: 'Name'),
-            ),
-            SizedBox(height: 16.0),
-            TextFormField(
-              controller: _addressController,
-              decoration: InputDecoration(labelText: 'Address'),
-            ),
-            SizedBox(height: 16.0),
-            TextFormField(
-              controller: _numberController,
-              decoration: InputDecoration(labelText: 'Number'),
-            ),
-            SizedBox(height: 16.0),
-            TextFormField(
-              controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
-              readOnly: true,
-            ),
-            SizedBox(height: 16.0),
-            TextFormField(
-              controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Password'),
-              obscureText: true,
-            ),
-            SizedBox(height: 32.0),
-            ElevatedButton(
-              onPressed: _updateProfile,
-              child: Text('Update Profile'),
-            ),
-          ],
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              TextFormField(
+                controller: _nameController,
+                decoration: InputDecoration(labelText: 'Name'),
+              ),
+              SizedBox(height: 16.0),
+              TextFormField(
+                controller: _addressController,
+                decoration: InputDecoration(labelText: 'Address'),
+              ),
+              SizedBox(height: 16.0),
+              TextFormField(
+                controller: _numberController,
+                decoration: InputDecoration(labelText: 'Number'),
+              ),
+              SizedBox(height: 16.0),
+              TextFormField(
+                controller: _emailController,
+                decoration: InputDecoration(labelText: 'Email'),
+                readOnly: true,
+              ),
+              SizedBox(height: 16.0),
+              TextFormField(
+                controller: _passwordController,
+                decoration: InputDecoration(labelText: 'Password'),
+                obscureText: true,
+              ),
+              SizedBox(height: 32.0),
+              ElevatedButton(
+                onPressed: _updateProfile,
+                child: Text('Update Profile'),
+              ),
+            ],
+          ),
         ),
       ),
     );

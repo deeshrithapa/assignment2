@@ -108,6 +108,12 @@ class _SearchPageState extends State<SearchPage> {
           MaterialPageRoute(builder: (context) => spfDetail()),
         );
         break;
+      case "moisturizer":
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => spfDetail()),
+        );
+        break;
       default:
       // Show a pop-up message for other queries
         showDialog(
