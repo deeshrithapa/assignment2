@@ -12,7 +12,6 @@ import 'CartPage.dart';
 import 'Dashboard.dart';
 import 'SearchPage.dart';
 import 'SettingPage.dart';
-import 'SearchService.dart'; // Import the SearchService file
 
 class MamaEarthDetails extends StatefulWidget {
   @override
@@ -120,11 +119,6 @@ class _DetailPageState extends State<MamaEarthDetails> {
                       },
                     ),
                   ),
-                  onChanged: (query) {
-                    setState(() {
-                      searchResults = SearchService.searchInMamaEarthDetails(query);
-                    });
-                  },
                 ),
               ),
 

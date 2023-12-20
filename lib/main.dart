@@ -12,8 +12,8 @@ import 'package:skin_sync/pages/slides/Dashboard.dart';
 import 'package:skin_sync/pages/slides/DetailPage.dart';
 import 'package:skin_sync/pages/slides/SearchPage.dart';
 import 'package:skin_sync/pages/slides/SettingPage.dart';
+import 'package:skin_sync/pages/slides/conditions.dart';
 import 'package:skin_sync/pages/slides/serum.dart';
-import 'package:skin_sync/pages/slides/update.dart';
 
 import 'components/button.dart';
 import 'components/item_detailpage.dart';
@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  firstpage(),
+      home:  conditionPage(),
     );
   }
 }

@@ -4,7 +4,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skin_sync/pages/authentication/firstpage.dart';
 import 'package:skin_sync/pages/slides/CartPage.dart';
-import 'package:skin_sync/pages/slides/Terms.dart';
+import 'package:skin_sync/pages/slides/conditions.dart';
 import 'package:skin_sync/pages/slides/update.dart';
 
 import 'Dashboard.dart';
@@ -232,7 +232,7 @@ class _SettingPageState extends State<SettingPage>{
           // Navigate to Terms and Services page
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => TermsAndConditionsPage()),
+            MaterialPageRoute(builder: (context) => conditionPage()),
           );
         } else if (title == "Update Information") {
           // Navigate to Update Information page

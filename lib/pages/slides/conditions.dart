@@ -1,23 +1,77 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:skin_sync/pages/authentication/firstpage.dart';
+import 'package:skin_sync/pages/slides/CartPage.dart';
+import 'package:skin_sync/pages/slides/conditions.dart';
+import 'package:skin_sync/pages/slides/update.dart';
 
-void main() {
-  runApp(termspage());
-}
+import 'Dashboard.dart';
+import 'DetailPage.dart';
+import 'SearchPage.dart';
+import 'SettingPage.dart';
 
-class termspage extends StatelessWidget {
+class conditionPage extends StatefulWidget {
+  conditionPage({Key? key}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: ' Terms & Conditions',
-      theme: ThemeData(
-        primarySwatch: Colors.brown,
-      ),
-      home: TermsAndConditionsPage(),
-    );
-  }
+  _conditionPageState createState() => _conditionPageState();
 }
+class _conditionPageState extends State<conditionPage>{
 
-class TermsAndConditionsPage extends StatelessWidget {
+  bool valNotify1= true;
+  bool valNotify2 = false;
+
+
+  onChangedFunction1(bool newValue1){
+    setState(() {
+      valNotify1 = newValue1;
+    });
+  }
+
+
+  int _selectedIndex=0;
+
+  void _onTabChange(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    // Navigate to the selected page
+    switch (index) {
+      case 0:
+      // Home page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => dashpage()),
+        );
+        break;
+      case 1:
+      // Search page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SearchPage()),
+        );
+        break;
+      case 2:
+      // Cart page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => cartpage()),
+        );
+        break;
+      case 3:
+      // Settings page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SettingPage()),
+        );
+        break;
+      default:
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,17 +83,6 @@ class TermsAndConditionsPage extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  labelText: 'Search',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-              ),
-            ),
             SizedBox(height: 16),
             Expanded(
               child: ListView(
@@ -92,16 +135,6 @@ class TermsAndConditionsPage extends StatelessWidget {
                     'SkinSync respects your privacy and takes reasonable measures to protect your personal data from unauthorized access, use, or disclosure. By using this application, you consent to the collection, use, and disclosure of your personal data in accordance with this policy.',
                     style: TextStyle(fontSize: 14),
                   ),
-                  /*SizedBox(height: 16),
-                  Text(
-                    '. Security Privacy:',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'All your transactions are 100% secure when you place an order online at SkinSync. Your personal information is encrypted by using 256-bit Secure Sockets Layer (SSL) encryption technology before being sent over the Internet, which ensures the privacy and high level of security of all your information.',
-                    style: TextStyle(fontSize: 14),
-                  ),*/
                   SizedBox(height: 16),
                   Text(
                     '4. Privacy Policy:',
@@ -189,7 +222,17 @@ class TermsAndConditionsPage extends StatelessWidget {
                   ),
                   SizedBox(height: 8),
                   Text(
-                    '+977 9816877218, +977',
+                    '+977 9816877218',
+                    style: TextStyle(fontSize: 14),
+                  ),
+                  SizedBox(height: 6),
+                  Text(
+                    '+977 9813415273',
+                    style: TextStyle(fontSize: 14),
+                  ),
+                  SizedBox(height: 6),
+                  Text(
+                    '+977 9869030521',
                     style: TextStyle(fontSize: 14),
                   ),
                   SizedBox(height: 8),
@@ -209,6 +252,49 @@ class TermsAndConditionsPage extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: Container(
+        color: Colors.black,
+        child: Padding(
+          padding: const EdgeInsets.symmetric( horizontal: 15, vertical:20),
+          child: GNav(
+
+            backgroundColor: Colors.black,
+            color: Colors.white,
+            activeColor: Colors.white,
+            tabBackgroundColor: Colors.grey.shade800,
+            gap: 8,
+            onTabChange: (index){
+              _onTabChange(index);
+            },
+
+
+            padding: EdgeInsets.all(16),
+            tabs: const[
+
+              GButton(
+                icon: Icons.home,
+                text: 'Home',
+              ),
+              GButton(
+                icon: Icons.search,
+                text: 'Search',
+              ),
+              GButton(
+                icon: Icons.shopping_cart,
+                text: 'My Cart',
+              ),
+              GButton(
+                icon: Icons.settings,
+                text: 'Profile',
+              ),
+            ],
+            selectedIndex: 1,
+          ),
+        ),
+      ),
+
     );
   }
+
+
 }

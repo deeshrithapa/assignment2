@@ -6,8 +6,11 @@ import 'package:skin_sync/pages/slides/CartPage.dart';
 import 'package:skin_sync/pages/slides/serum.dart';
 import 'package:skin_sync/pages/slides/spf.dart';
 import 'Dashboard.dart';
-import 'DetailPage.dart';
 import 'SettingPage.dart';
+import 'facewash.dart';
+import 'moisturizer.dart';
+
+
 
 class SearchPage extends StatefulWidget {
   SearchPage({Key? key}) : super(key: key);
@@ -87,6 +90,24 @@ class _SearchPageState extends State<SearchPage> {
           MaterialPageRoute(builder: (context) => spfDetail()),
         );
         break;
+      case "facewash":
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => facewashDetail()),
+        );
+        break;
+      case "cleanser":
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => facewashDetail()),
+        );
+        break;
+      case "suncreen":
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => spfDetail()),
+        );
+        break;
       default:
       // Show a pop-up message for other queries
         showDialog(
@@ -124,6 +145,20 @@ class _SearchPageState extends State<SearchPage> {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => serumDetail()),
+        );
+        break;
+      case 2:
+      // Navigate to a detail page for the second additional image
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => moisturizerDetail()),
+        );
+        break;
+      case 3:
+      // Navigate to a detail page for the second additional image
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => facewashDetail()),
         );
         break;
     // Add more cases if needed...

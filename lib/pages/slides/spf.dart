@@ -103,7 +103,7 @@ class _spfDetailPageState extends State<spfDetail> {
                       crossAxisSpacing: 20,
                       childAspectRatio: 0.73,
                     ),
-                    itemCount: search_detailpage.length,
+                    itemCount: 4,
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         child: Column(
@@ -113,7 +113,7 @@ class _spfDetailPageState extends State<spfDetail> {
                               child: Container(
                                 width: double.maxFinite,
                                 decoration: BoxDecoration(
-                                  color: Color(search_detailpage[index]['color']),
+                                  color: Color(search_detailpage[index + 4]['color']),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Center(
@@ -130,11 +130,11 @@ class _spfDetailPageState extends State<spfDetail> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: CircleAvatar(
                                           radius: 55,
-                                          backgroundColor: Color(search_detailpage[index]['color']).withOpacity(0.5),
+                                          backgroundColor: Color(search_detailpage[index + 4]['color']).withOpacity(0.5),
                                         ),
                                       ),
                                       Image.asset(
-                                        search_detailpage[index]['image'], // Adjust index to start from 2
+                                        search_detailpage[index + 4]['image'], // Adjust index to start from 2
                                         height: 160,
                                       ),
                                     ],
@@ -143,11 +143,11 @@ class _spfDetailPageState extends State<spfDetail> {
                               ),
                             ),
                             Text(
-                              search_detailpage[index]['name'],
+                              search_detailpage[index + 4]['name'],
                               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                             ),
                             Text(
-                              r'Rs.' + search_detailpage[index]['price'],
+                              r'Rs.' + search_detailpage[index + 4]['price'],
                               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                             ),
                             // Add to Cart Button
@@ -159,16 +159,16 @@ class _spfDetailPageState extends State<spfDetail> {
                                 // Add the selected item to the cart
                                 cartProvider.addToCart(
                                   CartItem(
-                                    name: search_detailpage[index]['name'],
-                                    price: double.parse(search_detailpage[index]['price']),
-                                    imagePath: search_detailpage[index]['image'],
+                                    name: search_detailpage[index + 4]['name'],
+                                    price: double.parse(search_detailpage[index + 4]['price']),
+                                    imagePath: search_detailpage[index + 4]['image'],
                                   ),
                                 );
 
                                 // Show a snackbar or navigate to the cart page
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text('Added to Cart: ${search_detailpage[index]['name']}'),
+                                    content: Text('Added to Cart: ${search_detailpage[index + 4]['name']}'),
                                   ),
                                 );
                               },

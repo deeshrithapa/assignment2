@@ -11,7 +11,7 @@ import 'package:skin_sync/pages/slides/SettingPage.dart';
 import 'CeraVeDetails.dart';
 import 'DC_detailpage.dart';
 import 'DetailPage.dart';
-import 'Terms.dart';
+import 'conditions.dart';
 
 class dashpage extends StatefulWidget {
   const dashpage({super.key});

@@ -9,12 +9,12 @@ import 'Dashboard.dart';
 import 'SearchPage.dart';
 import 'SettingPage.dart';
 
-class serumDetail extends StatefulWidget {
+class moisturizerDetail extends StatefulWidget {
   @override
-  _serumDetailPageState createState() => _serumDetailPageState();
+  _moisturizerDetailPageState createState() => _moisturizerDetailPageState();
 }
 
-class _serumDetailPageState extends State<serumDetail> {
+class _moisturizerDetailPageState extends State<moisturizerDetail> {
   int _selectedIndex = 0;
 
   void _onTabChange(int index) {
@@ -80,7 +80,7 @@ class _serumDetailPageState extends State<serumDetail> {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      'Serum Products',
+                      'Facewash & Cleanser Products',
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 18,
@@ -113,7 +113,7 @@ class _serumDetailPageState extends State<serumDetail> {
                               child: Container(
                                 width: double.maxFinite,
                                 decoration: BoxDecoration(
-                                  color: Color(search_detailpage[index + 8]['color']),
+                                  color: Color(search_detailpage[index + 18]['color']),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Center(
@@ -130,11 +130,11 @@ class _serumDetailPageState extends State<serumDetail> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: CircleAvatar(
                                           radius: 55,
-                                          backgroundColor: Color(search_detailpage[index + 8]['color']).withOpacity(0.5),
+                                          backgroundColor: Color(search_detailpage[index + 18]['color']).withOpacity(0.5),
                                         ),
                                       ),
                                       Image.asset(
-                                        search_detailpage[index + 8]['image'], // Adjust index to start from 2
+                                        search_detailpage[index + 18]['image'], // Adjust index to start from 2
                                         height: 160,
                                       ),
                                     ],
@@ -143,11 +143,11 @@ class _serumDetailPageState extends State<serumDetail> {
                               ),
                             ),
                             Text(
-                              search_detailpage[index + 8]['name'],
+                              search_detailpage[index + 18]['name'],
                               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                             ),
                             Text(
-                              r'Rs.' + search_detailpage[index + 8]['price'],
+                              r'Rs.' + search_detailpage[index + 18]['price'],
                               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                             ),
                             // Add to Cart Button
@@ -159,16 +159,16 @@ class _serumDetailPageState extends State<serumDetail> {
                                 // Add the selected item to the cart
                                 cartProvider.addToCart(
                                   CartItem(
-                                    name: search_detailpage[index + 8]['name'],
-                                    price: double.parse(search_detailpage[index + 8]['price']),
-                                    imagePath: search_detailpage[index + 8]['image'],
+                                    name: search_detailpage[index + 18]['name'],
+                                    price: double.parse(search_detailpage[index + 18]['price']),
+                                    imagePath: search_detailpage[index + 18]['image'],
                                   ),
                                 );
 
                                 // Show a snackbar or navigate to the cart page
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text('Added to Cart: ${search_detailpage[index + 8]['name']}'),
+                                    content: Text('Added to Cart: ${search_detailpage[index +18]['name']}'),
                                   ),
                                 );
                               },
