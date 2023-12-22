@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'dart:io';
 
+import '../../models/dropdown.dart';
 import '../authentication/firebase_auth_services.dart';
 
 
@@ -21,6 +22,7 @@ class RentPageState extends State<AdminPage> {
 
   TextEditingController namecontroller = TextEditingController();
   TextEditingController detailscontroller = TextEditingController();
+  TextEditingController brandcontroller = TextEditingController();
   TextEditingController pricecontroller = TextEditingController();
 
   PlatformFile? pickedFile;
@@ -74,11 +76,13 @@ class RentPageState extends State<AdminPage> {
       final name = namecontroller.text;
       final details = detailscontroller.text;
       final price = pricecontroller.text;
+      final brand = brandcontroller.text;
 
       await saveDetails(
           name: name,
           details:details,
           imgPath: fileUrl,
+          brand : brand,
           price:price
       );
 
@@ -98,7 +102,9 @@ class RentPageState extends State<AdminPage> {
     required String name,
     required String details,
     required String imgPath,
+    required String brand,
     required String price,
+
   }) async {
     try {
       CollectionReference vehiclesCollection =
@@ -108,6 +114,7 @@ class RentPageState extends State<AdminPage> {
         'name': name,
         'details': details,
         'img': imgPath,
+        'brand': brand,
         'price': price
       });
       print('Data added to Firestore successfully');
@@ -118,6 +125,7 @@ class RentPageState extends State<AdminPage> {
 
   @override
   Widget build(BuildContext context) {
+    String? SelectedBrand;
     return MaterialApp(
       home: Scaffold(
         appBar:AppBar(
@@ -204,6 +212,21 @@ class RentPageState extends State<AdminPage> {
                   ],
                 ),
               ),// Upload
+              const SizedBox(
+                height: 20,
+              ),
+              DropDown.buildDropdownContainer(
+                context,
+                "Select Skincare Brand ",
+                ["Cerave", "Derma", "Cetaphil", "Mama Earth"],
+                SelectedBrand ,
+                    (String? newValue) {
+                  setState(() {
+                    SelectedBrand = newValue;
+                    brandcontroller.text = newValue ?? "";
+                  });
+                },
+              ),
               const SizedBox(
                 height: 20,
               ),

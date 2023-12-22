@@ -101,10 +101,11 @@ class _cartpageState extends State<cartpage> {
             leading: Container(
               width: 80.0,
               height: 80.0,
-              child: Image.asset(
-                '${item.imagePath}',
+              child: Image.network(
+                item.imagePath,
                 fit: BoxFit.cover,
               ),
+
             ),
             trailing: IconButton(
               icon: Icon(Icons.delete),

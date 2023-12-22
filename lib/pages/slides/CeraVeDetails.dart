@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
 
-import '../../components/data_detailpage.dart';
-import '../../components/item_detailpage.dart';
 import '../../models/Cart.dart';
 import '../../models/cart_provider.dart';
 import 'CartPage.dart';
@@ -19,6 +16,33 @@ class CVDetails extends StatefulWidget {
 }
 
 class _DetailPageState extends State<CVDetails> {
+  List<Map<String, dynamic>> ceraveProducts = [];
+
+  // Fetch data from Firestore
+  Future<void> fetchDataFromFirestore() async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('product-details') // Replace with your actual collection name
+          .where('brand', isEqualTo: 'Cerave')
+          .get();
+
+      setState(() {
+        ceraveProducts = querySnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+      });
+
+      // Debugging: Print the retrieved data
+      print('Fetched Data: $ceraveProducts');
+    } catch (e) {
+      print('Error fetching data from Firestore: $e');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchDataFromFirestore();
+  }
+
   int _selectedIndex = 0;
 
   void _onTabChange(int index) {
@@ -69,7 +93,6 @@ class _DetailPageState extends State<CVDetails> {
         child: Container(
           child: Column(
             children: [
-              // Add the heading and subheading
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 25, 25, 0),
                 child: Column(
@@ -93,10 +116,7 @@ class _DetailPageState extends State<CVDetails> {
                   ],
                 ),
               ),
-
-              // Add CarouselSlider
-              SizedBox(height: 20), // Adjust the height based on your preference
-
+              SizedBox(height: 20),
               Expanded(
                 child: Container(
                   padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
@@ -107,17 +127,19 @@ class _DetailPageState extends State<CVDetails> {
                       crossAxisSpacing: 20,
                       childAspectRatio: 0.73,
                     ),
-                    itemCount: 6, // Updated to display 4 items (from index 2 to 5)
+                    itemCount: ceraveProducts.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            // ... (existing code)
+
                             Expanded(
                               child: Container(
                                 width: double.maxFinite,
                                 decoration: BoxDecoration(
-                                  color: Color(data_detailpage[index + 2]['color']),
+                                  color: Color(ceraveProducts[index]['color'] ?? 0xFF000000),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Center(
@@ -134,48 +156,47 @@ class _DetailPageState extends State<CVDetails> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: CircleAvatar(
                                           radius: 55,
-                                          backgroundColor: Color(data_detailpage[index + 2]['color']).withOpacity(0.5),
+                                          backgroundColor: Color(ceraveProducts[index]['color'] ?? 0xFF000000).withOpacity(0.5),
                                         ),
                                       ),
-                                      Image.asset(
-                                        data_detailpage[index + 10]['image'], // Adjust index to start from 2
-                                        height: 160,
-                                      ),
+                                      Image.network(ceraveProducts[index]['img'], height: 160),
+
                                     ],
                                   ),
                                 ),
                               ),
                             ),
-                            Text(data_detailpage[index + 10]['name'],
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.w400)),
+
                             Text(
-                              r'Rs.' + data_detailpage[index + 10]['price'],
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w700),
+                              ceraveProducts[index]['name'] ?? '',
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                             ),
-                            // Add to Cart Button
+
+                            Text(
+                              'Rs.' + (ceraveProducts[index]['price'] ?? 0).toString(),
+                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                            ),
+
+// ... (existing code)
+
                             ElevatedButton(
                               onPressed: () {
-                                // Get the CartProvider instance
                                 var cartProvider = context.read<CartProvider>();
-
-                                // Add the selected item to the cart
                                 cartProvider.addToCart(CartItem(
-                                  name: data_detailpage[index + 10]['name'],
-                                  price: double.parse(data_detailpage[index + 10]['price']),
-                                      imagePath: data_detailpage[index + 10]['image'],
-                                ),);
+                                  name: ceraveProducts[index]['name'],
+                                  price: double.parse(ceraveProducts[index]['price'].toString()),
+                                  imagePath: ceraveProducts[index]['img'],
+                                ));
 
-                                //  Show a snackbar or navigate to the cart page
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text('Added to Cart: ${data_detailpage[index + 10]['name']}'),
+                                    content: Text('Added to Cart: ${ceraveProducts[index]['name']}'),
                                   ),
                                 );
                               },
                               child: Text('Add to Cart'),
                             ),
+
                           ],
                         ),
                       );
