@@ -14,14 +14,17 @@ import 'DetailPage.dart';
 import 'conditions.dart';
 
 class dashpage extends StatefulWidget {
-  const dashpage({super.key});
+  final String? userId; // Add userId parameter
+
+  const dashpage({Key? key, this.userId}) : super(key: key);
 
   @override
   State<dashpage> createState() => _dashpageState();
 }
 
 class _dashpageState extends State<dashpage> {
-  int _selectedIndex=0;
+  int _selectedIndex = 0;
+
   void _onTabChange(int index) {
     setState(() {
       _selectedIndex = index;
@@ -33,7 +36,7 @@ class _dashpageState extends State<dashpage> {
       // Home page
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => dashpage()),
+          MaterialPageRoute(builder: (context) => dashpage(userId: widget.userId)),
         );
         break;
       case 1:
@@ -61,31 +64,34 @@ class _dashpageState extends State<dashpage> {
         break;
     }
   }
+
   void _goToMamaEarthDetailsPage() {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => MamaEarthDetails()),
     );
   }
+
   void _goToDetailsPage() {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => DetailPage()),
     );
   }
+
   void _goToCeraVeDetailsPage() {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => CVDetails()),
     );
   }
+
   void _goToDCDetailsPage() {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => DC_detailpage()),
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -96,9 +102,15 @@ class _dashpageState extends State<dashpage> {
         child: Container(
           child: Column(
             children: [
-              Padding(padding: EdgeInsets.only(top: 50),
-                child:  Text("SkinSync",
-                    style: GoogleFonts.aladin(fontSize: 40, fontStyle: FontStyle.normal, fontWeight: FontWeight.bold,)
+              Padding(
+                padding: EdgeInsets.only(top: 50),
+                child: Text(
+                  "SkinSync",
+                  style: GoogleFonts.aladin(
+                    fontSize: 40,
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               CarouselSlider(
@@ -106,7 +118,7 @@ class _dashpageState extends State<dashpage> {
                   height: 200.0,
                   enlargeCenterPage: true,
                   autoPlay: true,
-                  aspectRatio: 16/9,
+                  aspectRatio: 16 / 9,
                   autoPlayCurve: Curves.fastOutSlowIn,
                   enableInfiniteScroll: true,
                   autoPlayAnimationDuration: Duration(milliseconds: 800),
@@ -120,11 +132,12 @@ class _dashpageState extends State<dashpage> {
                 ].map((item) => Image.asset(item, fit: BoxFit.cover)).toList(),
               ),
               Padding(
-                padding: EdgeInsets.only(top:20,),
-                child: Text("Top Brand Picks",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
+                padding: EdgeInsets.only(
+                  top: 20,
+                ),
+                child: Text(
+                  "Top Brand Picks",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center, // Added this line for center alignment
                 ),
               ),
@@ -160,7 +173,7 @@ class _dashpageState extends State<dashpage> {
                   ),
                 ),
               ),
-             Container(
+              Container(
                 decoration: BoxDecoration(
                   color: Colors.brown.shade50,
                   borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
@@ -263,20 +276,18 @@ class _dashpageState extends State<dashpage> {
       bottomNavigationBar: Container(
         color: Colors.black,
         child: Padding(
-          padding: const EdgeInsets.symmetric( horizontal: 15, vertical:20),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           child: GNav(
             backgroundColor: Colors.black,
             color: Colors.white,
             activeColor: Colors.white,
             tabBackgroundColor: Colors.grey.shade800,
             gap: 8,
-            onTabChange: (index){
+            onTabChange: (index) {
               _onTabChange(index);
             },
-
             padding: EdgeInsets.all(16),
-            tabs: const[
-
+            tabs: const [
               GButton(
                 icon: Icons.home,
                 text: 'Home',
@@ -303,5 +314,5 @@ class _dashpageState extends State<dashpage> {
 }
 
 void onSearch(String query) {
-  //code to perform search based on the query
+  // code to perform search based on the query
 }

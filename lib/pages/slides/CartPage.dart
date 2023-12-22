@@ -18,7 +18,7 @@ class cartpage extends StatefulWidget {
 }
 
 class _cartpageState extends State<cartpage> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
 
   void _onTabChange(int index) {
     setState(() {

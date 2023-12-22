@@ -53,6 +53,8 @@ dependencies:
   another_flushbar:
   google_maps_flutter:
   google_maps_flutter_web:
+  file_picker: ^6.1.1
+  firebase_storage:
 
 
 

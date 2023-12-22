@@ -1,9 +1,12 @@
 import 'package:another_flushbar/flushbar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:skin_sync/pages/authentication/signup.dart';
 import 'package:skin_sync/pages/slides/Dashboard.dart';
+
+import '../slides/Admin.dart';
 
 class loginpage extends StatefulWidget {
   const loginpage({super.key});
@@ -15,31 +18,39 @@ class loginpage extends StatefulWidget {
 class _loginpageState extends State<loginpage> {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  late String email;
+  late String password;
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  Future<void> signInWithEmail() async {
-    try {
-      UserCredential userCredential =
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-
-      // Successfully signed in
-      print("Signed in: ${userCredential.user?.email}");
-
-      // Navigate to the dashboard
-      Navigator.push(context, MaterialPageRoute(builder: (context) => dashpage()));
-    } catch (e) {
-      // Handle errors
-      print("Error: $e");
-
-      // Show a flushbar with an error message
-      _showErrorFlushbar("Invalid email or password");
-    }
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
+
+  // Future<void> signInWithEmail() async {
+  //   try {
+  //     UserCredential userCredential =
+  //     await FirebaseAuth.instance.signInWithEmailAndPassword(
+  //       email: emailController.text.trim(),
+  //       password: passwordController.text.trim(),
+  //     );
+  //
+  //     // Successfully signed in
+  //     print("Signed in: ${userCredential.user?.email}");
+  //
+  //     // Navigate to the dashboard with the user's UID
+  //     Navigator.push(context, MaterialPageRoute(builder: (context) => dashpage(userId: userCredential.user?.uid)));
+  //   } catch (e) {
+  //     // Handle errors
+  //     print("Error: $e");
+  //     // Show a flushbar with an error message
+  //     _showErrorFlushbar("Invalid email or password");
+  //   }
+  // }
 
   // Function to show flushbar for error messages
   void _showErrorFlushbar(String message) {
@@ -118,7 +129,7 @@ class _loginpageState extends State<loginpage> {
                             borderRadius: BorderRadius.circular(30)),
                         child: ElevatedButton(
                           onPressed: (){
-                            signInWithEmail();
+                            loginScreen();
                             //Navigate
                             //Navigator.push(context, MaterialPageRoute(builder: (context)=> dashpage()),);
                           },
@@ -151,5 +162,50 @@ class _loginpageState extends State<loginpage> {
         ),
       ),
     );
+  }
+  void loginScreen() async {
+    String email = emailController.text;
+    String password = passwordController.text;
+
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      User? user = userCredential.user;
+
+      if (user != null) {
+        // Successful sign-in
+        print("User is signed in");
+
+        // Check for admin credentials
+        if (email == "admin@gmail.com") {
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AdminPage()));
+        } else {
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => dashpage()));
+        }
+      }
+    } catch (e) {
+      // Unsuccessful sign-in
+      print("Error Occurred: $e");
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Error"),
+            content: Text("Wrong email or password. Please try again."),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("OK"),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 }

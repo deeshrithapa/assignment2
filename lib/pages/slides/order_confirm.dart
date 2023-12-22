@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 
+import '../map/map_page.dart';
 import 'Dashboard.dart';
 
 class OrderConfirmPage extends StatefulWidget {
@@ -11,6 +13,8 @@ class OrderConfirmPage extends StatefulWidget {
 class _OrderConfirmPageState extends State<OrderConfirmPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
+  LatLng? selectedLocation; // Assuming LatLng is the type of your location data
+
 
   Future<void> _showOrderConfirmationDialog() async {
     return showDialog<void>(
@@ -66,6 +70,28 @@ class _OrderConfirmPageState extends State<OrderConfirmPage> {
               ),
             ),
             SizedBox(height: 20),
+            GestureDetector(
+              onTap: () async {
+                // Navigate to the MapSample page to select a location
+                LatLng? location = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MapSample(),
+                  ),
+                );
+                setState(() {
+                  selectedLocation = location;
+                });
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  selectedLocation != null
+                      ? 'Selected Location: ${selectedLocation.toString()}'
+                      : 'Select Location',
+                ),
+              ),
+            ),
             ElevatedButton(
               onPressed: () async {
                 // Show a pop-up message indicating the order has been confirmed

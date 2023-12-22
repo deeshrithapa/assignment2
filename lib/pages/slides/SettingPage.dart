@@ -10,6 +10,7 @@ import 'package:skin_sync/pages/slides/update.dart';
 import 'Dashboard.dart';
 import 'DetailPage.dart';
 import 'SearchPage.dart';
+import 'order_history.dart';
 
 class SettingPage extends StatefulWidget {
   SettingPage({Key? key}) : super(key: key);
@@ -241,8 +242,12 @@ class _SettingPageState extends State<SettingPage>{
             context,
             MaterialPageRoute(builder: (context) => UpdatePage()),
           );
-        } else {
-          // Handle other options if needed
+        } else if (title == "My Order History") {
+          // Navigate to Update Information page
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => OrderHistoryPage()),
+          );
         }
       },
       child: Padding(
