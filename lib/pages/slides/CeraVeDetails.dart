@@ -133,7 +133,6 @@ class _DetailPageState extends State<CVDetails> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // ... (existing code)
 
                             Expanded(
                               child: Container(

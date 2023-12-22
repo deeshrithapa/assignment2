@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart'; // Import CarouselSlider package
@@ -19,6 +20,32 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  List<Map<String, dynamic>> cetaphilProducts = [];
+
+  Future<void> fetchDataFromFirestore() async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('product-details') // Replace with your actual collection name
+          .where('brand', isEqualTo: 'Cetaphil')
+          .get();
+
+      setState(() {
+        cetaphilProducts = querySnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+      });
+
+      // Debugging: Print the retrieved data
+      print('Fetched Data: $cetaphilProducts');
+    } catch (e) {
+      print('Error fetching data from Firestore: $e');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchDataFromFirestore();
+  }
+
   int _selectedIndex=0;
   void _onTabChange(int index) {
     setState(() {
@@ -180,14 +207,14 @@ class _DetailPageState extends State<DetailPage> {
                               onPressed: () {
                                 var cartProvider = context.read<CartProvider>();
                                 cartProvider.addToCart(CartItem(
-                                  name: search_detailpage[index + 10]['name'],
-                                  price: double.parse(search_detailpage[index + 10]['price']),
-                                  imagePath: search_detailpage[index + 10]['image'],
-                                ),);
+                                  name: cetaphilProducts[index]['name'],
+                                  price: double.parse(cetaphilProducts[index]['price'].toString()),
+                                  imagePath: cetaphilProducts[index]['img'],
+                                ));
 
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text('Added to Cart: ${search_detailpage[index + 10]['name']}'),
+                                    content: Text('Added to Cart: ${cetaphilProducts[index]['name']}'),
                                   ),
                                 );
                               },

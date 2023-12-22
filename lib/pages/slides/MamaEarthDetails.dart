@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -19,6 +20,32 @@ class MamaEarthDetails extends StatefulWidget {
 }
 
 class _DetailPageState extends State<MamaEarthDetails> {
+
+  List<Map<String, dynamic>> mamaProducts = [];
+  // Fetch data from Firestore
+  Future<void> fetchDataFromFirestore() async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('product-details') // Replace with your actual collection name
+          .where('brand', isEqualTo: 'Mama Earth')
+          .get();
+
+      setState(() {
+        mamaProducts = querySnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+      });
+
+      // Debugging: Print the retrieved data
+      print('Fetched Data: $mamaProducts');
+    } catch (e) {
+      print('Error fetching data from Firestore: $e');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchDataFromFirestore();
+  }
   int _selectedIndex = 0;
 
   // Add a controller for the search field

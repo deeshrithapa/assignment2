@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -19,6 +20,32 @@ class DC_detailpage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DC_detailpage> {
+  List<Map<String, dynamic>> dermaProducts = [];
+
+  // Fetch data from Firestore
+  Future<void> fetchDataFromFirestore() async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('product-details') // Replace with your actual collection name
+          .where('brand', isEqualTo: 'Derma')
+          .get();
+
+      setState(() {
+        dermaProducts = querySnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+      });
+
+      // Debugging: Print the retrieved data
+      print('Fetched Data: $dermaProducts');
+    } catch (e) {
+      print('Error fetching data from Firestore: $e');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchDataFromFirestore();
+  }
   int _selectedIndex = 0;
 
   void _onTabChange(int index) {
@@ -157,20 +184,16 @@ class _DetailPageState extends State<DC_detailpage> {
                             // Add to Cart Button
                             ElevatedButton(
                               onPressed: () {
-                                // Get the CartProvider instance
                                 var cartProvider = context.read<CartProvider>();
-
-                                // Add the selected item to the cart
                                 cartProvider.addToCart(CartItem(
-                                  name: data_detailpage[index + 10]['name'],
-                                  price: double.parse(data_detailpage[index + 10]['price']),
-                                  imagePath: data_detailpage[index + 10]['image'],
-                                ),);
+                                  name: dermaProducts[index]['name'],
+                                  price: double.parse(dermaProducts[index]['price'].toString()),
+                                  imagePath: dermaProducts[index]['img'],
+                                ));
 
-                                //  Show a snackbar or navigate to the cart page
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text('Added to Cart: ${data_detailpage[index + 10]['name']}'),
+                                    content: Text('Added to Cart: ${dermaProducts[index]['name']}'),
                                   ),
                                 );
                               },
