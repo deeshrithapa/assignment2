@@ -236,7 +236,7 @@ class _signuppageState extends State<signuppage> {
         'address': addressController.text.trim(),
         'mobileNumber': mobileNumberController.text.trim(),
         'email': emailController.text.trim(),
-        'password': emailController.text.trim(),
+        'password': passwordController.text.trim(),
         // Add other fields as needed
       });
 

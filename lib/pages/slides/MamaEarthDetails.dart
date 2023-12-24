@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -108,85 +109,95 @@ class _DetailPageState extends State<MamaEarthDetails> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'SkinSync',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 28,
+                      "SkinSync",
+                      style: GoogleFonts.aladin(
+                        fontSize: 30,
+                        fontStyle: FontStyle.normal,
                       ),
                     ),
                     SizedBox(height: 8),
                     Text(
-                      'MamaEarth Products',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18,
+                      "MamaEarth Products",
+                      style: GoogleFonts.aladin(
+                        fontSize: 25,
+                        fontStyle: FontStyle.normal,
                       ),
                     ),
                   ],
                 ),
               ),
+              SizedBox(height: 20),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 20,
+                      childAspectRatio: 0.73,
+                    ),
+                    itemCount: mamaProducts.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Container(
+                                width: double.maxFinite,
+                                decoration: BoxDecoration(
+                                  color: Color(mamaProducts[index]['color'] ?? 0xFFFFFFFF),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Center(
+                                  child: Image.network(
+                                    mamaProducts[index]['img'],
+                                    height: 160,
+                                    fit: BoxFit.cover, // This will ensure the image covers the entire area
+                                  ),
+                                ),
+                              ),
+                            ),
 
-              // Add Search Bar
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: TextField(
-                  controller: searchController,
-                  decoration: InputDecoration(
-                    hintText: 'Search MamaEarth Products',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    suffixIcon: IconButton(
-                      icon: Icon(Icons.clear),
-                      onPressed: () {
-                        searchController.clear();
-                        setState(() {
-                          searchResults.clear();
-                        });
-                      },
-                    ),
+
+                            Text(
+                              mamaProducts[index]['name'] ?? '',
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                            ),
+
+                            Text(
+                              'Rs.' + (mamaProducts[index]['price'] ?? 0).toString(),
+                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                            ),
+
+// ... (existing code)
+
+                            ElevatedButton(
+                              onPressed: () {
+                                var cartProvider = context.read<CartProvider>();
+                                cartProvider.addToCart(CartItem(
+                                  name: mamaProducts[index]['name'],
+                                  price: double.parse(mamaProducts[index]['price'].toString()),
+                                  imagePath: mamaProducts[index]['img'],
+                                ));
+
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Added to Cart: ${mamaProducts[index]['name']}'),
+                                  ),
+                                );
+                              },
+                              child: Text('Add to Cart'),
+                            ),
+
+                          ],
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
-
-              // Display Search Results
-              if (searchResults.isNotEmpty)
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
-                    child: GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 20,
-                        childAspectRatio: 0.73,
-                      ),
-                      itemCount: searchResults.length,
-                      itemBuilder: (context, index) {
-                        return buildProductCard(searchResults[index]);
-                      },
-                    ),
-                  ),
-                )
-              else
-              // Display MamaEarth Products
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
-                    child: GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 20,
-                        childAspectRatio: 0.73,
-                      ),
-                      itemCount: 6,
-                      itemBuilder: (context, index) {
-                        return buildProductCard(data_detailpage[index + 10]);
-                      },
-                    ),
-                  ),
-                ),
             ],
           ),
         ),

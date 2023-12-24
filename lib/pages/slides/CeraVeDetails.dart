@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -99,18 +100,18 @@ class _DetailPageState extends State<CVDetails> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'SkinSync',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 28,
+                      "SkinSync",
+                      style: GoogleFonts.aladin(
+                        fontSize: 30,
+                        fontStyle: FontStyle.normal,
                       ),
                     ),
                     SizedBox(height: 8),
                     Text(
-                      'CeraVe Products',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18,
+                      "Cerave Products",
+                      style: GoogleFonts.aladin(
+                        fontSize: 25,
+                        fontStyle: FontStyle.normal,
                       ),
                     ),
                   ],
@@ -138,29 +139,14 @@ class _DetailPageState extends State<CVDetails> {
                               child: Container(
                                 width: double.maxFinite,
                                 decoration: BoxDecoration(
-                                  color: Color(ceraveProducts[index]['color'] ?? 0xFF000000),
+                                  color: Color(ceraveProducts[index]['color'] ?? 0xFFFFFFFF),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Center(
-                                  child: Stack(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: CircleAvatar(
-                                          radius: 55,
-                                          backgroundColor: Colors.white,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: CircleAvatar(
-                                          radius: 55,
-                                          backgroundColor: Color(ceraveProducts[index]['color'] ?? 0xFF000000).withOpacity(0.5),
-                                        ),
-                                      ),
-                                      Image.network(ceraveProducts[index]['img'], height: 160),
-
-                                    ],
+                                  child: Image.network(
+                                    ceraveProducts[index]['img'],
+                                    height: 160,
+                                    fit: BoxFit.cover, // This will ensure the image covers the entire area
                                   ),
                                 ),
                               ),
@@ -176,7 +162,6 @@ class _DetailPageState extends State<CVDetails> {
                               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                             ),
 
-// ... (existing code)
 
                             ElevatedButton(
                               onPressed: () {

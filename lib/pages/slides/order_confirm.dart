@@ -1,7 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
 
 
+import '../../models/cart_provider.dart';
 import '../map/map_page.dart';
 import 'Dashboard.dart';
 
@@ -15,7 +19,7 @@ class _OrderConfirmPageState extends State<OrderConfirmPage> {
   TextEditingController phoneNumberController = TextEditingController();
   LatLng? selectedLocation; // Assuming LatLng is the type of your location data
 
-
+  
   Future<void> _showOrderConfirmationDialog() async {
     return showDialog<void>(
       context: context,
@@ -35,6 +39,43 @@ class _OrderConfirmPageState extends State<OrderConfirmPage> {
         );
       },
     );
+  }
+
+  Future<void> saveCartItemsToFirestore({
+    required BuildContext context,
+  }) async {
+    try {
+      CollectionReference cartItemsCollection = FirebaseFirestore.instance.collection('order');
+      User? user = FirebaseAuth.instance.currentUser;
+
+      if (user != null) { // Check if user is logged in
+        var cartProvider = context.read<CartProvider>();
+
+        // Create a list to store cart items data
+        List<Map<String, dynamic>> cartItemsData = [];
+
+        for (var item in cartProvider.cartItems) {
+          cartItemsData.add({
+            'productName': item.name,
+            'price': item.price,
+            // Add other properties as needed
+          });
+        }
+
+        // Save cart items to Firestore under the user's UID
+        await cartItemsCollection.doc(user.uid).set({
+          'items': cartItemsData,
+          'timestamp': Timestamp.now(),
+        });
+
+        print('Cart items saved to Firestore successfully!');
+      } else {
+        print('User is not logged in.');
+        // Handle the case where the user is not logged in if necessary
+      }
+    } catch (error) {
+      print('Error saving cart items to Firestore: $error');
+    }
   }
 
   @override
@@ -94,19 +135,28 @@ class _OrderConfirmPageState extends State<OrderConfirmPage> {
             ),
             ElevatedButton(
               onPressed: () async {
-                // Show a pop-up message indicating the order has been confirmed
-                await _showOrderConfirmationDialog();
+                User? user = FirebaseAuth.instance.currentUser;
+                if (user != null) {
+                  // Save cart items to Firestore (similar to what you had in your cart page)
+                  // For simplicity, you can create a function or method in your provider or another service to handle this.
+                  // You may need to modify this part to suit your exact cart management logic.
+                  await saveCartItemsToFirestore(context: context);
 
-                // You can perform additional actions here if needed
+                  // Show a pop-up message indicating the order has been confirmed
+                  await _showOrderConfirmationDialog();
 
-                // Navigate to the dashboard page after confirming the order
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => dashpage()),
-                );
+                  // Navigate to the dashboard page after confirming the order
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => dashpage()),
+                  );
+                } else {
+                  print('User is not logged in.');
+                }
               },
               child: Text('Confirm Order'),
             ),
+
           ],
         ),
       ),

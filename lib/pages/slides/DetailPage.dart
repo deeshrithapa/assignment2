@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart'; // Import CarouselSlider package
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -94,37 +95,30 @@ class _DetailPageState extends State<DetailPage> {
         child: Container(
           child: Column(
             children: [
-              // Add the heading and subheading
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 25, 25, 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'SkinSync',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 28,
+                      "SkinSync",
+                        style: GoogleFonts.aladin(
+                        fontSize: 30,
+                        fontStyle: FontStyle.normal,
                       ),
                     ),
                     SizedBox(height: 8),
                     Text(
-                      'Cetaphil Products',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18,
+                      "Cetaphil Products",
+                        style: GoogleFonts.aladin(
+                        fontSize: 25,
+                        fontStyle: FontStyle.normal,
                       ),
                     ),
                   ],
                 ),
               ),
-
-              // Add CarouselSlider
-
-              SizedBox(height: 20), // Adjust the height based on your preference
-
-
-
+              SizedBox(height: 20),
               Expanded(
                 child: Container(
                   padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
@@ -135,74 +129,42 @@ class _DetailPageState extends State<DetailPage> {
                       crossAxisSpacing: 20,
                       childAspectRatio: 0.73,
                     ),
-                    itemCount: 6,
+                    itemCount: cetaphilProducts.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
-                        onTap: () {
-                          // Handle the onTap event for the entire item
-                          print('Item tapped for product: ${search_detailpage[index]['name']}');
-
-                          // Navigate to the item detail page
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Item(
-                                itemName: search_detailpage[index]['name'],
-                              ),
-                            ),
-                          );
-                        },
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+
                             Expanded(
                               child: Container(
                                 width: double.maxFinite,
                                 decoration: BoxDecoration(
-                                  color: Color(search_detailpage[index]['color']),
+                                  color: Color(cetaphilProducts[index]['color'] ?? 0xFFFFFFFF),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Center(
-                                  child: Stack(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: CircleAvatar(
-                                          radius: 55,
-                                          backgroundColor: Colors.white,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: CircleAvatar(
-                                          radius: 55,
-                                          backgroundColor: Color(search_detailpage[index]['color']).withOpacity(0.5),
-                                        ),
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          // Handle the onTap event for the image
-                                          print('Image tapped for product: ${search_detailpage[index]['name']}');
-                                          // You can add navigation logic or any other action here
-                                        },
-                                        child: Image.asset(
-                                          search_detailpage[index]['image'],
-                                          height: 160,
-                                        ),
-                                      ),
-                                    ],
+                                  child: Image.network(
+                                    cetaphilProducts[index]['img'],
+                                    height: 160,
+                                    fit: BoxFit.cover, // This will ensure the image covers the entire area
                                   ),
                                 ),
                               ),
                             ),
-                            Text(search_detailpage[index]['name'],
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.w400)),
+
                             Text(
-                              r'Rs.' + search_detailpage[index]['price'],
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w700),
+                              cetaphilProducts[index]['name'] ?? '',
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                             ),
+
+                            Text(
+                              'Rs.' + (cetaphilProducts[index]['price'] ?? 0).toString(),
+                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                            ),
+
+// ... (existing code)
+
                             ElevatedButton(
                               onPressed: () {
                                 var cartProvider = context.read<CartProvider>();
@@ -220,6 +182,7 @@ class _DetailPageState extends State<DetailPage> {
                               },
                               child: Text('Add to Cart'),
                             ),
+
                           ],
                         ),
                       );
@@ -234,20 +197,18 @@ class _DetailPageState extends State<DetailPage> {
       bottomNavigationBar: Container(
         color: Colors.black,
         child: Padding(
-          padding: const EdgeInsets.symmetric( horizontal: 15, vertical:20),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           child: GNav(
             backgroundColor: Colors.black,
             color: Colors.white,
             activeColor: Colors.white,
             tabBackgroundColor: Colors.grey.shade800,
             gap: 8,
-            onTabChange: (index){
+            onTabChange: (index) {
               _onTabChange(index);
             },
-
             padding: EdgeInsets.all(16),
-            tabs: const[
-
+            tabs: const [
               GButton(
                 icon: Icons.home,
                 text: 'Home',
@@ -269,7 +230,6 @@ class _DetailPageState extends State<DetailPage> {
           ),
         ),
       ),
-
     );
   }
 }

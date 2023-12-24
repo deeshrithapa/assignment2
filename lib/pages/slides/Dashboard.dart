@@ -135,7 +135,8 @@ class _dashpageState extends State<dashpage> {
                 padding: EdgeInsets.only(
                   top: 20,
                 ),
-                child: Text(
+                child:
+                Text(
                   "Top Brand Picks",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center, // Added this line for center alignment
@@ -163,10 +164,10 @@ class _dashpageState extends State<dashpage> {
                       SizedBox(height: 10),
                       Text(
                         "Cerave",
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                        style: GoogleFonts.aladin(
+                          fontSize: 35,
+                          fontStyle: FontStyle.normal,
+                          //fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
@@ -195,10 +196,10 @@ class _dashpageState extends State<dashpage> {
                       SizedBox(height: 10),
                       Text(
                         "Cetaphil",
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          style: GoogleFonts.aladin(
+                          fontSize: 35,
+                          fontStyle: FontStyle.normal,
+                          //fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
@@ -227,10 +228,10 @@ class _dashpageState extends State<dashpage> {
                       SizedBox(height: 10),
                       Text(
                         "The DermaCo",
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                        style: GoogleFonts.aladin(
+                          fontSize: 35,
+                          fontStyle: FontStyle.normal,
+                          //fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
@@ -258,11 +259,11 @@ class _dashpageState extends State<dashpage> {
                       ),
                       SizedBox(height: 10),
                       Text(
-                        "Mamaearth",
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                        "MamaEarth",
+                          style: GoogleFonts.aladin(
+                          fontSize: 35,
+                          fontStyle: FontStyle.normal,
+                          //fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],

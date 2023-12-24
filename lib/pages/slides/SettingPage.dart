@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:skin_sync/models/cart_provider.dart';
 import 'package:skin_sync/pages/authentication/firstpage.dart';
 import 'package:skin_sync/pages/slides/CartPage.dart';
 import 'package:skin_sync/pages/slides/conditions.dart';
@@ -139,15 +141,30 @@ class _SettingPageState extends State<SettingPage>{
                         borderRadius: BorderRadius.circular(20)
                     )
                 ),
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> firstpage()),);
+                onPressed: () {
+                  // 1. Reference to CartProvider
+                  var cartProvider = context.read<CartProvider>();
+
+                  // 2. Clear the cart items
+                  cartProvider.clearCart();
+
+                  // 3. Navigate back to the authentication page
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => firstpage()),
+                        (Route<dynamic> route) => false, // This ensures we remove all previous routes
+                  );
                 },
-                child: Text("Sign Out", style: TextStyle(
-                    fontSize: 16,
-                    letterSpacing: 2.2,
-                    color: Colors.black
-                )),
+                child: Text(
+                  "Sign Out",
+                  style: TextStyle(
+                      fontSize: 16,
+                      letterSpacing: 2.2,
+                      color: Colors.black
+                  ),
+                ),
               ),
+
 
             ),
             SizedBox(height: 20),
