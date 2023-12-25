@@ -31,27 +31,6 @@ class _loginpageState extends State<loginpage> {
     super.dispose();
   }
 
-  // Future<void> signInWithEmail() async {
-  //   try {
-  //     UserCredential userCredential =
-  //     await FirebaseAuth.instance.signInWithEmailAndPassword(
-  //       email: emailController.text.trim(),
-  //       password: passwordController.text.trim(),
-  //     );
-  //
-  //     // Successfully signed in
-  //     print("Signed in: ${userCredential.user?.email}");
-  //
-  //     // Navigate to the dashboard with the user's UID
-  //     Navigator.push(context, MaterialPageRoute(builder: (context) => dashpage(userId: userCredential.user?.uid)));
-  //   } catch (e) {
-  //     // Handle errors
-  //     print("Error: $e");
-  //     // Show a flushbar with an error message
-  //     _showErrorFlushbar("Invalid email or password");
-  //   }
-  // }
-
   // Function to show flushbar for error messages
   void _showErrorFlushbar(String message) {
     Flushbar(

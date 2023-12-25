@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,31 @@ class moisturizerDetail extends StatefulWidget {
 
 class _moisturizerDetailPageState extends State<moisturizerDetail> {
   int _selectedIndex = 0;
+  List<DocumentSnapshot> moisturizerProducts = [];
+  // Fetch data from Firestore based on the type "moisturizer"
+  Future<void> fetchMoisturizerProductsFromFirestore() async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('product-details')
+          .where('type', isEqualTo: 'moisturizer')  // Fetch items where type is "SPF"
+          .get();
+
+      setState(() {
+        moisturizerProducts = querySnapshot.docs;
+      });
+
+      // Debugging: Print the retrieved data
+      print('Fetched moisturizer Products: $moisturizerProducts');
+    } catch (e) {
+      print('Error fetching moisturizer products from Firestore: $e');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchMoisturizerProductsFromFirestore();  // Call this method when the widget is initialized
+  }
 
   void _onTabChange(int index) {
     setState(() {

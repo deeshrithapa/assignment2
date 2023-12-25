@@ -3,7 +3,9 @@ class CartItem {
   final String name;
   final double price;
 
-  CartItem({required this.imagePath,
+  CartItem({
+    required this.imagePath,
     required this.name,
-    required this.price});
+    required this.price,
+  });
 }

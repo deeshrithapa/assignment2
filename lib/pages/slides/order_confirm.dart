@@ -19,7 +19,7 @@ class _OrderConfirmPageState extends State<OrderConfirmPage> {
   TextEditingController phoneNumberController = TextEditingController();
   LatLng? selectedLocation; // Assuming LatLng is the type of your location data
 
-  
+
   Future<void> _showOrderConfirmationDialog() async {
     return showDialog<void>(
       context: context,
@@ -58,12 +58,18 @@ class _OrderConfirmPageState extends State<OrderConfirmPage> {
           cartItemsData.add({
             'productName': item.name,
             'price': item.price,
-            // Add other properties as needed
+
           });
         }
 
+
         // Save cart items to Firestore under the user's UID
         await cartItemsCollection.doc(user.uid).set({
+          'name': nameController.text,
+          'number': phoneNumberController.text,
+          'location': selectedLocation != null
+              ? GeoPoint(selectedLocation!.latitude, selectedLocation!.longitude)
+              : null,
           'items': cartItemsData,
           'timestamp': Timestamp.now(),
         });
@@ -137,25 +143,29 @@ class _OrderConfirmPageState extends State<OrderConfirmPage> {
               onPressed: () async {
                 User? user = FirebaseAuth.instance.currentUser;
                 if (user != null) {
-                  // Save cart items to Firestore (similar to what you had in your cart page)
-                  // For simplicity, you can create a function or method in your provider or another service to handle this.
-                  // You may need to modify this part to suit your exact cart management logic.
-                  await saveCartItemsToFirestore(context: context);
+                  try {
+                    // Save cart items to Firestore
+                    await saveCartItemsToFirestore(context: context);
 
-                  // Show a pop-up message indicating the order has been confirmed
-                  await _showOrderConfirmationDialog();
+                    // Show a pop-up message indicating the order has been confirmed
+                    await _showOrderConfirmationDialog();
 
-                  // Navigate to the dashboard page after confirming the order
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => dashpage()),
-                  );
+                    // Navigate to the dashboard page after confirming the order
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => dashpage()),
+                    );
+                  } catch (error) {
+                    print('Error confirming order: $error');
+                    // Handle the error as needed
+                  }
                 } else {
                   print('User is not logged in.');
                 }
               },
               child: Text('Confirm Order'),
             ),
+
 
           ],
         ),

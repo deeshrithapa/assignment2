@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +17,31 @@ class spfDetail extends StatefulWidget {
 
 class _spfDetailPageState extends State<spfDetail> {
   int _selectedIndex = 0;
+  List<DocumentSnapshot> spfProducts = [];
+  // Fetch data from Firestore based on the type "SPF"
+  Future<void> fetchSPFProductsFromFirestore() async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('product-details')
+          .where('type', isEqualTo: 'spf')  // Fetch items where type is "SPF"
+          .get();
 
+      setState(() {
+        spfProducts = querySnapshot.docs;
+      });
+
+      // Debugging: Print the retrieved data
+      print('Fetched SPF Products: $spfProducts');
+    } catch (e) {
+      print('Error fetching SPF products from Firestore: $e');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchSPFProductsFromFirestore();  // Call this method when the widget is initialized
+  }
   void _onTabChange(int index) {
     setState(() {
       _selectedIndex = index;
@@ -103,8 +128,9 @@ class _spfDetailPageState extends State<spfDetail> {
                       crossAxisSpacing: 20,
                       childAspectRatio: 0.73,
                     ),
-                    itemCount: 4,
+                    itemCount: search_detailpage.where((item) => item['type'] == 'spf').length,
                     itemBuilder: (context, index) {
+                      var spfItems = search_detailpage.where((item) => item['type'] == 'spf').toList();
                       return GestureDetector(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,7 +160,7 @@ class _spfDetailPageState extends State<spfDetail> {
                                         ),
                                       ),
                                       Image.asset(
-                                        search_detailpage[index + 4]['image'], // Adjust index to start from 2
+                                        spfItems[index]['image'],
                                         height: 160,
                                       ),
                                     ],
@@ -159,16 +185,16 @@ class _spfDetailPageState extends State<spfDetail> {
                                 // Add the selected item to the cart
                                 cartProvider.addToCart(
                                   CartItem(
-                                    name: search_detailpage[index + 4]['name'],
-                                    price: double.parse(search_detailpage[index + 4]['price']),
-                                    imagePath: search_detailpage[index + 4]['image'],
+                                    name: spfItems[index]['name'],
+                                    price: double.parse(spfItems[index]['price']),
+                                    imagePath: spfItems[index]['image'],
                                   ),
                                 );
 
                                 // Show a snackbar or navigate to the cart page
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text('Added to Cart: ${search_detailpage[index + 4]['name']}'),
+                                    content: Text('Added to Cart: ${spfProducts[index]['name']}'),
                                   ),
                                 );
                               },

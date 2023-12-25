@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,31 @@ class serumDetail extends StatefulWidget {
 
 class _serumDetailPageState extends State<serumDetail> {
   int _selectedIndex = 0;
+  List<DocumentSnapshot> serumProducts = [];
+  // Fetch data from Firestore based on the type "facwash"
+  Future<void> fetchSerumProductsFromFirestore() async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('product-details')
+          .where('type', isEqualTo: 'serum')  // Fetch items where type is "SPF"
+          .get();
+
+      setState(() {
+        serumProducts = querySnapshot.docs;
+      });
+
+      // Debugging: Print the retrieved data
+      print('Fetched serum Products: $serumProducts');
+    } catch (e) {
+      print('Error fetching serum products from Firestore: $e');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchSerumProductsFromFirestore();  // Call this method when the widget is initialized
+  }
 
   void _onTabChange(int index) {
     setState(() {
@@ -90,7 +116,6 @@ class _serumDetailPageState extends State<serumDetail> {
                 ),
               ),
 
-              // Add CarouselSlider
               SizedBox(height: 20), // Adjust the height based on your preference
 
               Expanded(

@@ -5,6 +5,26 @@ import 'package:flutter/material.dart';
 
 import '../../models/order.dart';
 
+class MyAppOrder {
+  final String userId;
+  final double price;
+  final String productName;
+
+  MyAppOrder({
+    required this.userId,
+    required this.price,
+    required this.productName,
+  });
+
+  factory MyAppOrder.fromDocumentSnapshot(DocumentSnapshot doc) {
+    return MyAppOrder(
+      userId: doc['userId'],
+      price: doc['price'].toDouble(),
+      productName: doc['productName'],
+    );
+  }
+}
+
 class OrderHistoryPage extends StatefulWidget {
   @override
   _OrderHistoryPageState createState() => _OrderHistoryPageState();
@@ -21,28 +41,35 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
     super.initState();
     User? user = _auth.currentUser;
     if (user != null) {
+      //print('User ID: ${user.uid}');
       orderHistoryFuture = _getOrderHistory(user.uid);
     } else {
-      // Handle the case where the user is not logged in
+      //print('User is not authenticated.'); // This should not be printed if a user is logged in.
       orderHistoryFuture = Future.value([]);
     }
   }
 
+
   Future<List<MyAppOrder>> _getOrderHistory(String userId) async {
     try {
+      //print('Fetching all orders from Firestore...'); // Debug print
       QuerySnapshot<Map<String, dynamic>> querySnapshot = await _firestore
           .collection('order')
           .where('userId', isEqualTo: userId)
-          .get();
+          .get(); // Fetch all documents without filtering by userId
 
+      //print('Number of orders retrieved: ${querySnapshot.size}'); // Debug print
+/*
       List<MyAppOrder> orderHistory = querySnapshot.docs
           .map((doc) => MyAppOrder.fromQueryDocumentSnapshot(doc))
-          .toList();
+          .toList();*/
 
-      return orderHistory;
+      //return orderHistory;
+      return querySnapshot.docs
+          .map((doc) => MyAppOrder.fromDocumentSnapshot(doc))
+          .toList();
     } catch (error) {
-      print('Error retrieving order history: $error');
-      // Handle the error if necessary
+      print('Error retrieving order history: $error'); // Debug print
       return [];
     }
   }
@@ -54,31 +81,24 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
         title: Text('Order History'),
       ),
       body: FutureBuilder<List<MyAppOrder>>(
-        future: orderHistoryFuture, // The future that resolves to the order history
+        future: orderHistoryFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            // While waiting for the future to complete, display a loading indicator
             return Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            // If an error occurs, display an error message
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {
-            // If the future completes successfully
             List<MyAppOrder> orderHistory = snapshot.data!;
-
             if (orderHistory.isEmpty) {
-              // If there is no order history, display a message
               return Center(child: Text('No order history found.'));
             } else {
-              // If there is order history, display a ListView
               return ListView.builder(
                 itemCount: orderHistory.length,
                 itemBuilder: (context, index) {
-                  // Build a ListTile for each order in the order history
                   return ListTile(
-                    title: Text('Order ID: ${orderHistory[index].orderId}'),
-                    subtitle: Text('Product: ${orderHistory[index].product}'),
+                    title: Text('userid ID: ${orderHistory[index].userId}'),
                     trailing: Text('Price: \$${orderHistory[index].price.toStringAsFixed(2)}'),
+                    subtitle: Text('Product: ${orderHistory[index].productName}'),
                   );
                 },
               );
@@ -86,7 +106,6 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
           }
         },
       ),
-
     );
   }
 }

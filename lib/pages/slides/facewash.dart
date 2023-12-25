@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,31 @@ class facewashDetail extends StatefulWidget {
 
 class _facewashDetailPageState extends State<facewashDetail> {
   int _selectedIndex = 0;
+  List<DocumentSnapshot> facewashProducts = [];
+  // Fetch data from Firestore based on the type "facwash"
+  Future<void> fetchFacewashProductsFromFirestore() async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('product-details')
+          .where('type', isEqualTo: 'facewash')  // Fetch items where type is "SPF"
+          .get();
+
+      setState(() {
+        facewashProducts = querySnapshot.docs;
+      });
+
+      // Debugging: Print the retrieved data
+      print('Fetched facwash Products: $facewashProducts');
+    } catch (e) {
+      print('Error fetching facwash products from Firestore: $e');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchFacewashProductsFromFirestore();  // Call this method when the widget is initialized
+  }
 
   void _onTabChange(int index) {
     setState(() {
@@ -103,8 +129,9 @@ class _facewashDetailPageState extends State<facewashDetail> {
                       crossAxisSpacing: 20,
                       childAspectRatio: 0.73,
                     ),
-                    itemCount: 6,
+                    itemCount: search_detailpage.where((item) => item['type'] == 'facewash').length,
                     itemBuilder: (context, index) {
+                      var facewashItems = search_detailpage.where((item) => item['type'] == 'facewash').toList();
                       return GestureDetector(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,7 +161,8 @@ class _facewashDetailPageState extends State<facewashDetail> {
                                         ),
                                       ),
                                       Image.asset(
-                                        search_detailpage[index + 12]['image'], // Adjust index to start from 2
+                                        facewashItems[index]['image'],
+                                        // Adjust index to start from 2
                                         height: 160,
                                       ),
                                     ],
@@ -159,16 +187,16 @@ class _facewashDetailPageState extends State<facewashDetail> {
                                 // Add the selected item to the cart
                                 cartProvider.addToCart(
                                   CartItem(
-                                    name: search_detailpage[index + 12]['name'],
-                                    price: double.parse(search_detailpage[index + 12]['price']),
-                                    imagePath: search_detailpage[index + 12]['image'],
+                                    name: facewashItems[index]['name'],
+                                    price: double.parse(facewashItems[index]['price']),
+                                    imagePath: facewashItems[index]['image'],
                                   ),
                                 );
 
                                 // Show a snackbar or navigate to the cart page
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text('Added to Cart: ${search_detailpage[index +12]['name']}'),
+                                    content: Text('Added to Cart: ${facewashProducts[index]['name']}'),
                                   ),
                                 );
                               },

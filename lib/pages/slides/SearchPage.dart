@@ -111,7 +111,7 @@ class _SearchPageState extends State<SearchPage> {
       case "moisturizer":
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => spfDetail()),
+          MaterialPageRoute(builder: (context) => moisturizerDetail()),
         );
         break;
       default:

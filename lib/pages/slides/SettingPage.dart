@@ -143,10 +143,10 @@ class _SettingPageState extends State<SettingPage>{
                 ),
                 onPressed: () {
                   // 1. Reference to CartProvider
-                  var cartProvider = context.read<CartProvider>();
+                  //var cartProvider = context.read<CartProvider>();
 
                   // 2. Clear the cart items
-                  cartProvider.clearCart();
+                  //cartProvider.clearCart();
 
                   // 3. Navigate back to the authentication page
                   Navigator.pushAndRemoveUntil(

@@ -163,7 +163,6 @@ class _DetailPageState extends State<DetailPage> {
                               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                             ),
 
-// ... (existing code)
 
                             ElevatedButton(
                               onPressed: () {
