@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -7,8 +8,8 @@ import 'package:skin_sync/models/cart_provider.dart';
 import 'package:skin_sync/pages/authentication/firstpage.dart';
 import 'package:skin_sync/pages/slides/CartPage.dart';
 import 'package:skin_sync/pages/slides/conditions.dart';
+import 'package:skin_sync/pages/slides/contactus.dart';
 import 'package:skin_sync/pages/slides/update.dart';
-
 import 'Dashboard.dart';
 import 'DetailPage.dart';
 import 'SearchPage.dart';
@@ -97,7 +98,7 @@ class _SettingPageState extends State<SettingPage>{
         padding: const EdgeInsets.all(10),
         child: ListView(
           children: [
-            SizedBox(height: 40),
+            SizedBox(height: 20),
             Row(
               children: [
                 Icon(
@@ -111,12 +112,9 @@ class _SettingPageState extends State<SettingPage>{
               ],
             ),
             Divider(height: 20, thickness: 1),
-            SizedBox(height: 10),
 
             buildAccountOption(context, "Update Information"),
-            buildAccountOption(context, "My Order History"),
-            buildAccountOption(context, "Terms and Services"),
-            SizedBox(height: 40),
+            SizedBox(height: 20,),
             Row(
               children: [
                 Icon(Icons.volume_up_outlined, color: Colors.blue),
@@ -129,10 +127,38 @@ class _SettingPageState extends State<SettingPage>{
               ],
             ),
             Divider(height: 20, thickness: 1),
-            SizedBox(height: 10),
             buildNotificationOption("Account Active", valNotify1, onChangedFunction1),
             //buildNotificationOption("Dark Theme", valNotify2, onChangedFunction2),
-            SizedBox(height: 50),
+            SizedBox(height: 20,),
+            Row(
+              children: [
+                Icon(Icons.call, color: Colors.blue),
+                SizedBox(width: 10),
+                Text("Customer Care", style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold
+                ))
+
+              ],
+            ),
+            Divider(height: 20, thickness: 1),
+            buildAccountOption(context, "Contact Us"),
+            SizedBox(height: 20,),
+            Row(
+              children: [
+                Icon(Icons.terminal_sharp, color: Colors.blue),
+                SizedBox(width: 10),
+                Text("Legal and Policies", style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold
+                ))
+
+              ],
+            ),
+            Divider(height: 20, thickness: 1),
+            buildAccountOption(context, "Terms and Services"),
+            buildAccountOption(context, "About App"),
+            SizedBox(height: 20,),
             Center(
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
@@ -143,10 +169,10 @@ class _SettingPageState extends State<SettingPage>{
                 ),
                 onPressed: () {
                   // 1. Reference to CartProvider
-                  //var cartProvider = context.read<CartProvider>();
+                  var cartProvider = context.read<CartProvider>();
 
                   // 2. Clear the cart items
-                  //cartProvider.clearCart();
+                  cartProvider.clearCart();
 
                   // 3. Navigate back to the authentication page
                   Navigator.pushAndRemoveUntil(
@@ -259,11 +285,51 @@ class _SettingPageState extends State<SettingPage>{
             context,
             MaterialPageRoute(builder: (context) => UpdatePage()),
           );
-        } else if (title == "My Order History") {
-          // Navigate to Update Information page
+        } else if (title == "Contact Us") {
+          // Navigate to Contact Us page
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => OrderHistoryPage()),
+            MaterialPageRoute(builder: (context) => contactusPage()),
+          );
+        }
+        else if (title == "About App") {
+          // Show a popup with an image when the "About App" option is selected
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                backgroundColor: Colors.brown.shade50,                content: Container(
+                  height: 400,
+                  width: 250,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                          Image.asset(
+                          'lib/images/skinsync.png', // Replace with your image asset path
+                          height: 330, // Set height as needed
+                          width: 300, // Set width as needed
+                          fit: BoxFit.contain, // Adjust the fit property as needed
+                        ),
+                      SizedBox(height: 16),
+                      Text('Skin Sync',
+                        style: GoogleFonts.alegreya(fontSize: 35, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      // Close the dialog
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Close',
+                      style: TextStyle(color: Colors.indigo), // Set desired text color here (e.g., red)
+                    ),
+                  ),
+                ],
+              );
+            },
           );
         }
       },
@@ -275,11 +341,12 @@ class _SettingPageState extends State<SettingPage>{
             Text(
               title,
               style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.grey[600]),
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey[600],
+              ),
             ),
-            Icon(Icons.arrow_forward_ios, color: Colors.grey)
+            Icon(Icons.arrow_forward_ios, color: Colors.grey),
           ],
         ),
       ),

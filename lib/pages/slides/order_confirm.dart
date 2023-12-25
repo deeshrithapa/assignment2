@@ -58,7 +58,6 @@ class _OrderConfirmPageState extends State<OrderConfirmPage> {
           cartItemsData.add({
             'productName': item.name,
             'price': item.price,
-
           });
         }
 

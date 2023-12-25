@@ -118,6 +118,7 @@ class _UpdatePageState extends State<UpdatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.brown.shade50,
       appBar: AppBar(
         title: Text('Update Profile'),
       ),
@@ -228,7 +229,17 @@ class _UpdatePageState extends State<UpdatePage> {
                     );
                   }
                 },
-                child: Text('Update Profile'),
+                child: Text('Update Profile',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.brown.shade200, // Change this color to the desired color
+                  onPrimary: Colors.white, // Text color on the button
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20), // You can adjust the radius as needed
+                  ),
+                ),
               ),
 
 

@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:skin_sync/pages/authentication/firstpage.dart';
 import 'package:skin_sync/pages/slides/CartPage.dart';
 import 'package:skin_sync/pages/slides/conditions.dart';
 import 'package:skin_sync/pages/slides/update.dart';
-
 import 'Dashboard.dart';
 import 'DetailPage.dart';
 import 'SearchPage.dart';
@@ -77,7 +77,7 @@ class _conditionPageState extends State<conditionPage>{
     return Scaffold(
       backgroundColor: Colors.brown.shade50,
       appBar: AppBar(
-        title: Center(child: Text('Terms & Conditions')),
+        title:Text('Terms & Conditions')
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -89,7 +89,7 @@ class _conditionPageState extends State<conditionPage>{
                 children: <Widget>[
                   Text(
                     'Terms and Conditions for SkinSync',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: GoogleFonts.alegreya(fontSize: 24),
                   ),
                   SizedBox(height: 16),
                   Text(
@@ -99,7 +99,7 @@ class _conditionPageState extends State<conditionPage>{
                   SizedBox(height: 16),
                   Text(
                     '1. Creating an Account:',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: GoogleFonts.alegreya(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
                   Text(
@@ -118,7 +118,7 @@ class _conditionPageState extends State<conditionPage>{
                   ),
                   Text(
                     '2. User Agreement:',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: GoogleFonts.alegreya(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
                   Text(
@@ -128,7 +128,7 @@ class _conditionPageState extends State<conditionPage>{
                   SizedBox(height: 16),
                   Text(
                     '3. Data Privacy:',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: GoogleFonts.alegreya(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
                   Text(
@@ -138,7 +138,7 @@ class _conditionPageState extends State<conditionPage>{
                   SizedBox(height: 16),
                   Text(
                     '4. Privacy Policy:',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: GoogleFonts.alegreya(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
                   Text(
@@ -153,7 +153,7 @@ class _conditionPageState extends State<conditionPage>{
                   SizedBox(height: 16),
                   Text(
                     '5. Disclaimer of Warranties and Limitation of Liability:',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: GoogleFonts.alegreya(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
                   Text(
@@ -178,7 +178,7 @@ class _conditionPageState extends State<conditionPage>{
                   SizedBox(height: 16),
                   Text(
                     '6. Website/Mobile Application Availability:',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: GoogleFonts.alegreya(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
                   Text(
@@ -188,7 +188,7 @@ class _conditionPageState extends State<conditionPage>{
                   SizedBox(height: 16),
                   Text(
                     '7. Links to third-party Website/Mobile Applications:',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: GoogleFonts.alegreya(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
                   Text(
@@ -198,7 +198,7 @@ class _conditionPageState extends State<conditionPage>{
                   SizedBox(height: 16),
                   Text(
                     '8. Changes to these Terms and Conditions:',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: GoogleFonts.alegreya(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
                   Text(
@@ -206,46 +206,6 @@ class _conditionPageState extends State<conditionPage>{
                     style: TextStyle(fontSize: 14),
                   ),
                   SizedBox(height: 16),
-                  Text(
-                    'Contact Information:',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Please contact us for any questions or comments regarding these Terms and Conditions.',
-                    style: TextStyle(fontSize: 14),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Contact Number:',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    '+977 9816877218',
-                    style: TextStyle(fontSize: 14),
-                  ),
-                  SizedBox(height: 6),
-                  Text(
-                    '+977 9813415273',
-                    style: TextStyle(fontSize: 14),
-                  ),
-                  SizedBox(height: 6),
-                  Text(
-                    '+977 9869030521',
-                    style: TextStyle(fontSize: 14),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Email:',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'skinsync@gmail.com',
-                    style: TextStyle(fontSize: 14),
-                  ),
-                  // Add more terms and conditions here...
                 ],
               ),
             ),
@@ -288,7 +248,7 @@ class _conditionPageState extends State<conditionPage>{
                 text: 'Profile',
               ),
             ],
-            selectedIndex: 1,
+            selectedIndex: 3,
           ),
         ),
       ),
