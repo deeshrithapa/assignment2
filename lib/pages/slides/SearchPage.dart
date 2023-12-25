@@ -81,37 +81,37 @@ class _SearchPageState extends State<SearchPage> {
       case "serum":
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => serumDetail()),
+          MaterialPageRoute(builder: (context) => serumDetails()),
         );
         break;
       case "spf":
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => spfDetail()),
+          MaterialPageRoute(builder: (context) => spfDetails()),
         );
         break;
       case "facewash":
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => facewashDetail()),
+          MaterialPageRoute(builder: (context) => facewashDetails()),
         );
         break;
       case "cleanser":
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => facewashDetail()),
+          MaterialPageRoute(builder: (context) => facewashDetails()),
         );
         break;
       case "suncreen":
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => spfDetail()),
+          MaterialPageRoute(builder: (context) => spfDetails()),
         );
         break;
       case "moisturizer":
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => moisturizerDetail()),
+          MaterialPageRoute(builder: (context) => moisturizerDetails()),
         );
         break;
       default:
@@ -143,28 +143,28 @@ class _SearchPageState extends State<SearchPage> {
       // Navigate to a detail page for the first additional image
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => spfDetail()),
+          MaterialPageRoute(builder: (context) => spfDetails()),
         );
         break;
       case 1:
       // Navigate to a detail page for the second additional image
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => serumDetail()),
+          MaterialPageRoute(builder: (context) => serumDetails()),
         );
         break;
       case 2:
       // Navigate to a detail page for the second additional image
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => moisturizerDetail()),
+          MaterialPageRoute(builder: (context) => moisturizerDetails()),
         );
         break;
       case 3:
       // Navigate to a detail page for the second additional image
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => facewashDetail()),
+          MaterialPageRoute(builder: (context) => facewashDetails()),
         );
         break;
     // Add more cases if needed...

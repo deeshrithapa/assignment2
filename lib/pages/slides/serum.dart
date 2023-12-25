@@ -1,8 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
-import '../../components/search_detailpage.dart';
+
 import '../../models/Cart.dart';
 import '../../models/cart_provider.dart';
 import 'CartPage.dart';
@@ -10,38 +11,40 @@ import 'Dashboard.dart';
 import 'SearchPage.dart';
 import 'SettingPage.dart';
 
-class serumDetail extends StatefulWidget {
+class serumDetails extends StatefulWidget {
   @override
-  _serumDetailPageState createState() => _serumDetailPageState();
+  _DetailPageState createState() => _DetailPageState();
 }
 
-class _serumDetailPageState extends State<serumDetail> {
-  int _selectedIndex = 0;
-  List<DocumentSnapshot> serumProducts = [];
-  // Fetch data from Firestore based on the type "facwash"
-  Future<void> fetchSerumProductsFromFirestore() async {
+class _DetailPageState extends State<serumDetails> {
+  List<Map<String, dynamic>> serumProducts = [];
+
+  // Fetch data from Firestore
+  Future<void> fetchDataFromFirestore() async {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection('product-details')
-          .where('type', isEqualTo: 'serum')  // Fetch items where type is "SPF"
+          .collection('product-details') // Replace with your actual collection name
+          .where('type', isEqualTo: 'serum')
           .get();
 
       setState(() {
-        serumProducts = querySnapshot.docs;
+        serumProducts = querySnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
       });
 
       // Debugging: Print the retrieved data
-      print('Fetched serum Products: $serumProducts');
+      print('Fetched Data: $serumProducts');
     } catch (e) {
-      print('Error fetching serum products from Firestore: $e');
+      print('Error fetching data from Firestore: $e');
     }
   }
 
   @override
   void initState() {
     super.initState();
-    fetchSerumProductsFromFirestore();  // Call this method when the widget is initialized
+    fetchDataFromFirestore();
   }
+
+  int _selectedIndex = 0;
 
   void _onTabChange(int index) {
     setState(() {
@@ -91,33 +94,30 @@ class _serumDetailPageState extends State<serumDetail> {
         child: Container(
           child: Column(
             children: [
-              // Add the heading and subheading
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 25, 25, 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'SkinSync',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 28,
+                      "SkinSync",
+                      style: GoogleFonts.aladin(
+                        fontSize: 30,
+                        fontStyle: FontStyle.normal,
                       ),
                     ),
                     SizedBox(height: 8),
                     Text(
-                      'Serum Products',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18,
+                      "serum Products",
+                      style: GoogleFonts.aladin(
+                        fontSize: 25,
+                        fontStyle: FontStyle.normal,
                       ),
                     ),
                   ],
                 ),
               ),
-
-              SizedBox(height: 20), // Adjust the height based on your preference
-
+              SizedBox(height: 20),
               Expanded(
                 child: Container(
                   padding: EdgeInsets.fromLTRB(25, 0, 0, 0),
@@ -128,77 +128,59 @@ class _serumDetailPageState extends State<serumDetail> {
                       crossAxisSpacing: 20,
                       childAspectRatio: 0.73,
                     ),
-                    itemCount: 4,
+                    itemCount: serumProducts.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+
                             Expanded(
                               child: Container(
                                 width: double.maxFinite,
                                 decoration: BoxDecoration(
-                                  color: Color(search_detailpage[index + 8]['color']),
+                                  color: Color(serumProducts[index]['color'] ?? 0xFFFFFFFF),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Center(
-                                  child: Stack(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: CircleAvatar(
-                                          radius: 55,
-                                          backgroundColor: Colors.white,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: CircleAvatar(
-                                          radius: 55,
-                                          backgroundColor: Color(search_detailpage[index + 8]['color']).withOpacity(0.5),
-                                        ),
-                                      ),
-                                      Image.asset(
-                                        search_detailpage[index + 8]['image'], // Adjust index to start from 2
-                                        height: 160,
-                                      ),
-                                    ],
+                                  child: Image.network(
+                                    serumProducts[index]['img'],
+                                    height: 160,
+                                    fit: BoxFit.cover, // This will ensure the image covers the entire area
                                   ),
                                 ),
                               ),
                             ),
+
                             Text(
-                              search_detailpage[index + 8]['name'],
+                              serumProducts[index]['name'] ?? '',
                               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                             ),
+
                             Text(
-                              r'Rs.' + search_detailpage[index + 8]['price'],
+                              'Rs.' + (serumProducts[index]['price'] ?? 0).toString(),
                               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                             ),
-                            // Add to Cart Button
+
+
                             ElevatedButton(
                               onPressed: () {
-                                // Get the CartProvider instance
                                 var cartProvider = context.read<CartProvider>();
+                                cartProvider.addToCart(CartItem(
+                                  name: serumProducts[index]['name'],
+                                  price: double.parse(serumProducts[index]['price'].toString()),
+                                  imagePath: serumProducts[index]['img'],
+                                ));
 
-                                // Add the selected item to the cart
-                                cartProvider.addToCart(
-                                  CartItem(
-                                    name: search_detailpage[index + 8]['name'],
-                                    price: double.parse(search_detailpage[index + 8]['price']),
-                                    imagePath: search_detailpage[index + 8]['image'],
-                                  ),
-                                );
-
-                                // Show a snackbar or navigate to the cart page
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text('Added to Cart: ${search_detailpage[index + 8]['name']}'),
+                                    content: Text('Added to Cart: ${serumProducts[index]['name']}'),
                                   ),
                                 );
                               },
                               child: Text('Add to Cart'),
                             ),
+
                           ],
                         ),
                       );
@@ -242,7 +224,7 @@ class _serumDetailPageState extends State<serumDetail> {
                 text: 'Profile',
               ),
             ],
-            selectedIndex: 1,
+            selectedIndex: 0,
           ),
         ),
       ),
