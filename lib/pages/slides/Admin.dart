@@ -40,7 +40,6 @@ class RentPageState extends State<AdminPage> {
 
   Future<void> uploadFile() async {
     if (pickedFile == null) {
-      print("No file picked");
       return;
     }
 
@@ -127,13 +126,17 @@ class RentPageState extends State<AdminPage> {
   Widget build(BuildContext context) {
     String? SelectedBrand;
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: Colors.brown.shade50,
         appBar:AppBar(
+          backgroundColor: Colors.brown.shade200,
           title: Text(
             "Admin Page",
             style: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.normal,
+              backgroundColor: Colors.brown.shade200,
             ),
           ),
           automaticallyImplyLeading: false,
@@ -154,7 +157,7 @@ class RentPageState extends State<AdminPage> {
                   child: TextField(
                     controller: namecontroller,
                     decoration: InputDecoration(
-                      hintText: 'Enter Shoe Name',
+                      hintText: 'Enter Skincare Product Name',
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.all(15),
                     ),
@@ -176,7 +179,7 @@ class RentPageState extends State<AdminPage> {
                   child: TextField(
                     controller: detailscontroller,
                     decoration: InputDecoration(
-                      hintText: 'Enter Shoe Description',
+                      hintText: 'Enter Product Description',
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.all(15),
                     ),
@@ -243,7 +246,7 @@ class RentPageState extends State<AdminPage> {
                   child: TextField(
                     controller: pricecontroller,
                     decoration: InputDecoration(
-                      hintText: 'Enter Shoe Price',
+                      hintText: 'Enter Product Price',
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.all(15),
                     ),
