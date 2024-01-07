@@ -231,8 +231,9 @@ class _signuppageState extends State<signuppage> {
       String uid = authResult.user!.uid;
 
       // Store additional user details in Firestore
+      String fullName = fullNameController.text.trim(); // Get the full name entered by the user
       await FirebaseFirestore.instance.collection('users').doc(uid).set({
-        'fullName': fullNameController.text.trim(),
+        'fullName': fullName,
         'address': addressController.text.trim(),
         'mobileNumber': mobileNumberController.text.trim(),
         'email': emailController.text.trim(),
@@ -245,15 +246,53 @@ class _signuppageState extends State<signuppage> {
         context,
         MaterialPageRoute(builder: (context) => dashpage()),
       );
+
+      // Show success dialog with the user's name
+      _showAlertDialog('Success', 'Welcome to Skinsync, $fullName!');
+
     } on FirebaseAuthException catch (e) {
       // Handle specific FirebaseAuth exceptions
       print('FirebaseAuthException: ${e.message}');
-      // Show user-friendly error message (SnackBar or Dialog)
+
+      // Show error dialog if sign-up fails
+      _showAlertDialog('Error', e.message ?? 'Sign Up failed!');
+
     } catch (e) {
       print(e);
-      // Show a generic error message (SnackBar or Dialog)
+
+      // Show a generic error dialog if sign-up fails
+      _showAlertDialog('Error', 'An error occurred while signing up.');
     }
   }
+
+// Method to show AlertDialog
+  Future<void> _showAlertDialog(String title, String message) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button to close dialog
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(message),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 }
 
 

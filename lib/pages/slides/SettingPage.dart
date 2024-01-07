@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -72,6 +73,50 @@ class _SettingPageState extends State<SettingPage>{
         break;
       default:
         break;
+    }
+  }
+
+  void _showSignOutDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Sign Out"),
+          content: Text("Are you sure you want to sign out?"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text("Cancel"),
+            ),
+            TextButton(
+              onPressed: () {
+                _signOutUser(); // Function to handle sign-out logic
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text("Sign Out"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  // Function to handle the sign-out logic
+  void _signOutUser() async {
+    try {
+      await FirebaseAuth.instance.signOut(); // Sign out the user
+
+      // Navigate to the firstpage or your desired page after signing out
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => firstpage()),
+            (Route<dynamic> route) => false, // This ensures we remove all previous routes
+      );
+    } catch (e) {
+      print("Error signing out: $e");
+      // Handle sign-out error if needed
     }
   }
 
@@ -181,14 +226,19 @@ class _SettingPageState extends State<SettingPage>{
                         (Route<dynamic> route) => false, // This ensures we remove all previous routes
                   );
                 },
-                child: Text(
-                  "Sign Out",
-                  style: TextStyle(
+                child: GestureDetector(
+                  onTap: () {
+                    _showSignOutDialog();
+                  },
+                  child: Text(
+                    "Sign Out",
+                    style: TextStyle(
                       fontSize: 16,
                       letterSpacing: 2.2,
-                      color: Colors.black
+                      color: Colors.black,
+                    ),
                   ),
-                ),
+                )
               ),
 
 
