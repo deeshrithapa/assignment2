@@ -17,8 +17,8 @@ import 'package:skin_sync/pages/slides/order_confirm.dart';
 
 import 'package:skin_sync/pages/slides/serum.dart';
 
-import 'components/button.dart';
-import 'components/item_detailpage.dart';
+
+
 import 'models/cart_provider.dart';
 
 Future<void> main() async {

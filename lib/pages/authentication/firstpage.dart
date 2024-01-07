@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:skin_sync/components/button.dart';
+
 import 'package:skin_sync/pages/authentication/login.dart';
 
 class firstpage extends StatefulWidget {

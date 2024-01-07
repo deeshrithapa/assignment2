@@ -6,8 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
 
-import '../../components/search_detailpage.dart';
-import '../../components/item_detailpage.dart';
+
 import '../../models/Cart.dart';
 import '../../models/cart_provider.dart';
 import 'CartPage.dart';
