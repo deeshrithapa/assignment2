@@ -222,7 +222,7 @@ class _SettingPageState extends State<SettingPage>{
                   // 3. Navigate back to the authentication page
                   Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => firstpage()),
+                    MaterialPageRoute(builder: (context) =>   firstpage()),
                         (Route<dynamic> route) => false, // This ensures we remove all previous routes
                   );
                 },
