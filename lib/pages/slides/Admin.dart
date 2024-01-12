@@ -14,11 +14,11 @@ import '../authentication/firebase_auth_services.dart';
 class AdminPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return RentPageState();
+    return AdminPageState();
   }
 }
 
-class RentPageState extends State<AdminPage> {
+class AdminPageState extends State<AdminPage> {
 
   TextEditingController namecontroller = TextEditingController();
   TextEditingController detailscontroller = TextEditingController();
